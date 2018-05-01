@@ -7,6 +7,26 @@
 #define _FN0 0
 #define _FN1 1
 #define _FN2 2
+#define _FN3 3
+
+#define MS_LEFT KC_MS_LEFT
+#define MS_RGHT KC_MS_RIGHT
+#define MS_UP KC_MS_UP
+#define MS_DOWN KC_MS_DOWN
+#define MS_BTN1 KC_MS_BTN1
+#define MS_BTN2 KC_MS_BTN2
+#define MS_ACCEL1 KC_MS_ACCEL1
+
+#define  L_FN2_S LT(_FN2, KC_S)
+#define  L_FN1 LT(_FN1, KC_SCLN)
+#define  L_FN1_A LT(_FN1, KC_A)
+#define  L_FN3_Z LT(_FN3, KC_Z)
+
+
+#define  M_SFT_D MT(MOD_LSFT, KC_D)
+
+#define  KC_RGHT KC_RIGHT
+#define  KC_PGDOWN KC_PGDOWN
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
