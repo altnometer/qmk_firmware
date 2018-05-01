@@ -26,7 +26,7 @@
 #define  M_SFT_D MT(MOD_LSFT, KC_D)
 
 #define  KC_RGHT KC_RIGHT
-#define  KC_PGDOWN KC_PGDOWN
+#define  KC_PGDN KC_PGDOWN
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
