@@ -20,13 +20,19 @@ enum layers {
 #define MS_BTN2 KC_MS_BTN2
 #define MS_ACCEL1 KC_MS_ACCEL1
 
-#define L_FN2_S LT(NAVIG, KC_S)
+#define L_FN2SP LT(NAVIG, KC_SPC)
 #define L_FN1 LT(NUMER, KC_SCLN)
 #define L_FN1_A LT(NUMER, KC_A)
 
 #define  MLSFT_D MT(MOD_LSFT, KC_D)
 #define  MRSFT_K MT(MOD_RSFT, KC_K)
+
+#define  MLALT_b MT(MOD_LALT, LSFT(KC_LBRC))
+#define  MLALT_F MT(MOD_LALT, KC_F)
+#define  MRALT_J MT(MOD_RALT, KC_J)
+
 #define  MRCTL_L MT(MOD_RCTL, KC_L)
+#define  MRCTL_S MT(MOD_LCTL, KC_S)
 
 #define  MRCTL_3 MT(MOD_RCTL, KC_3)
 
@@ -57,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		MO(2)  , L_FN1_A, L_FN2_S, MLSFT_D, KC_F   , KC_G   , KC_H   , KC_J   , MRSFT_K, MRCTL_L, L_FN1  , KC_QUOT, KC_ENT ,
+		MO(2)  , L_FN1_A, MRCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, L_FN1  , KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		KC_LALT, KC_LCTL, KC_LGUI, KC_SPC , KC_SPC , KC_SPC , KC_RCTL, KC_RALT, XXXXXXX, MO(3)  , XXXXXXX),
+		KC_LALT, KC_LCTL, KC_LGUI, L_FN2SP, L_FN2SP, L_FN2SP, KC_RCTL, KC_RALT, XXXXXXX, MO(3)  , XXXXXXX),
 
         /* Layer 0
         * ,-----------------------------------------------------------------------------------------.
@@ -77,16 +83,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		KC_GRV , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, KC_DEL,
 		KC_GRV , KC_LBRC, KC_UNDS, KC_MINS, KC_EQL , KC_PLUS, _______, KC_7   , TD_8AST, KC_9   , KC_DOT , _______, _______, _______,
-		_______, KC_RBRC, KC_LPRN, KC_RPRN, KC_LCBR, KC_RCBR, _______, KC_1   , KC_2   , MRCTL_3, KC_0   , _______, _______,
+		_______, KC_RBRC, KC_LPRN, KC_RPRN, MLALT_b, KC_RCBR, _______, KC_1   , KC_2   , MRCTL_3, KC_0   , _______, _______,
 		_______, XXXXXXX, KC_CIRC, KC_HASH, KC_DLR , KC_ASTR, _______, KC_ENT , KC_4   , KC_5   , KC_6   , KC_COMM, _______, _______,
 		_______, _______, _______, KC_BSPC, KC_BSPC, KC_BSPC, _______, _______, _______, _______, _______),
 
 	[NAVIG] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______, KC_END , KC_HOME, KC_PGUP, KC_PGDN, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, KC_ENT , KC_ENT , KC_ENT , _______, _______, _______, _______, _______),
+		_______, _______, KC_LCTL, KC_LSFT, KC_LALT, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______, _______, KC_ENT , _______, _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
 
 	[MOUSE] = LAYOUT(
 		_______, M(1)   , M(2)   , M(3)   , M(4)   , M(5)   , M(6)   , M(7)   , M(8)   , M(9)   , M(10)   , M(11) , M(12)  , _______, _______,
