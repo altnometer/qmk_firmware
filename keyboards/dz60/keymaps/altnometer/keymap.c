@@ -23,6 +23,7 @@ enum layers {
 
 // Layer Switching.
 #define L_NUMSP LT(NUMER, KC_SPC)
+#define T_NUMER TT(NUMER)
 
 // Modifier Switching.
 #define  MLSFT_D MT(MOD_LSFT, KC_D)
@@ -71,19 +72,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		OS_LGUI, KC_A   , MRCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, KC_SCLN, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		KC_LALT, OS_LGUI, OSL(2) , L_NUMSP, L_NUMSP, L_NUMSP, KC_RCTL, KC_RALT, XXXXXXX, MO(3)  , XXXXXXX),
+		KC_LALT, OS_LGUI, OSL(2) , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO(3)  , XXXXXXX),
 
         /* Layer 0
         * ,-----------------------------------------------------------------------------------------.
         * |  ~  | F1  | F2  | F3  | F4  | F5  | F6  | F7  | F8  | F9  | F11 | F11 | F12 |   Del     |
         * |-----------------------------------------------------------------------------------------+
-        * |  ~    |  [  |  _  |  -  |  =  |  +  |     |  7  |  8  |  9  |  .  |     |     |         |
+        * |       |     |  5  |  4  |  .  |     |     |  /  |  8  |  9  |     |     |     |         |
         * |-----------------------------------------------------------------------------------------+
-        * |         |  ]  |  (  |  )  |  {  |  }  |     |  1  |  2  |  3  |  0  |     |             |
+        * |         |     |  3  |  2  |  1  |     |     |  0  |  ,  |  6  |     |     |             |
         * |-----------------------------------------------------------------------------------------+
-        * |           |  ^  |  #  |  $  |  *  |     | Ent |  4  |  5  |  6  |  ,  |                 |
+        * |           |     |  +  |     |  ,  |     |     |  7  |     |     |     |                 |
         * |-----------------------------------------------------------------------------------------+
-        * |       |      |      |             Bspc                  |      |      |     |     |     |
+        * |       |      |      |              Spc                  |      |      |     |     |     |
         * `-----------------------------------------------------------------------------------------'
         */
 	/* [NUMER] = LAYOUT( */
@@ -94,10 +95,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	/* 	_______, _______, KC_BSPC, _______, _______, _______, KC_BSPC, _______, _______, _______, _______), */
 	[NUMER] = LAYOUT(
 		KC_GRV , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, KC_DEL,
-		KC_GRV , _______, KC_5   , KC_4   , _______, _______, _______, KC_EQL , KC_8   , KC_9   , KC_DOT , _______, _______, _______,
+		KC_GRV , _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_COMM, KC_8   , KC_9   , KC_DOT , _______, _______, _______,
 		_______, _______, KC_3   , KC_2   , MLALT_1, _______, _______, MRALT_0, KC_6   , MRCTL_7, _______, _______, _______,
 		_______, XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_COMM, _______, _______,
-		_______, _______, KC_BSPC, _______, _______, _______, KC_BSPC, _______, _______, _______, _______),
+		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
 
 	[NAVIG] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
