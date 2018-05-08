@@ -23,28 +23,27 @@ enum layers {
 
 // Layer Switching.
 #define L_NUMSP LT(NUMER, KC_SPC)
-#define L_SYMSC LT(SYMBL, KC_SCLN)
 #define T_NUMER TT(NUMER)
 #define OS_NAV OSL(NAVIG)
 #define MO_MOUS MO(MOUSE)
-#define L_SYM2 LT(SYMBL, KC_2)
-#define L_SYM6 LT(SYMBL, KC_6)
+#define L_SYM1 LT(SYMBL, KC_1)
+#define L_SYM0 LT(SYMBL, KC_0)
 #define L_SYMF LT(SYMBL, KC_F)
+#define L_SYMJ LT(SYMBL, KC_J)
 
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
 
-#define  MLALT_A MT(MOD_LALT, KC_A)
-#define  MRALT_J MT(MOD_RALT, KC_J)
-#define  MLALT_1 MT(MOD_LALT, KC_1)
-#define  MRALT_0 MT(MOD_RALT, KC_0)
+#define  MALT_A MT(MOD_LALT, KC_A)
+#define  MALT_SC MT(MOD_RALT, KC_SCLN)
 
 #define  MCTL_L MT(MOD_RCTL, KC_L)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
 #define  MCTL_BR MT(MOD_LCTL, KC_LBRC)
 
 #define  MCTL_7 MT(MOD_RCTL, KC_7)
+#define  MCTL_3 MT(MOD_RCTL, KC_3)
 
 // One shot modifiers.
 #define OS_LGUI OSM(MOD_LGUI)
@@ -77,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		OS_LGUI, MLALT_A, MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , MRALT_J, MSFT_K , MCTL_L , L_SYMSC, KC_QUOT, KC_ENT ,
+		OS_LGUI, MALT_A, MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		KC_LALT, OS_LGUI, OS_NAV , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
 
@@ -95,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, _______, KC_3   , L_SYM2 , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, L_SYM6 , MCTL_7, _______, _______, _______,
+		_______, KC_LALT, MCTL_3 , KC_2   , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , KC_6   , MCTL_7 , KC_LALT, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
         /* SYMBL
