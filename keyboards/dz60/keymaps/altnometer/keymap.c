@@ -29,6 +29,7 @@ enum layers {
 #define OS_NAV OSL(NAVIG)
 #define MO_MOUS MO(MOUSE)
 #define L_SYM2 LT(SYMBL, KC_2)
+#define L_SYM6 LT(SYMBL, KC_6)
 
 // Modifier Switching.
 #define  MLSFT_D MT(MOD_LSFT, KC_D)
@@ -94,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, _______, KC_3   , L_SYM2 , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, KC_6   , MRCTL_7, _______, _______, _______,
+		_______, _______, KC_3   , L_SYM2 , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, L_SYM6 , MRCTL_7, _______, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
         /* SYMBL
