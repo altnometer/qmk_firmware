@@ -7,7 +7,7 @@
 enum layers {
     _BASE = 0,
     NUMER,
-    NUMSH,
+    SYMBL,
     NAVIG,
     MOUSE,
 };
@@ -23,6 +23,8 @@ enum layers {
 
 // Layer Switching.
 #define L_NUMSP LT(NUMER, KC_SPC)
+#define L_SYMA LT(SYMBL, KC_A)
+#define L_SYMSC LT(SYMBL, KC_SCLN)
 #define T_NUMER TT(NUMER)
 #define OS_NAV OSL(NAVIG)
 #define MO_MOUS MO(MOUSE)
@@ -72,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		OS_LGUI, KC_A   , MRCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, KC_SCLN, KC_QUOT, KC_ENT ,
+		OS_LGUI, L_SYMA , MRCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, L_SYMSC, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		KC_LALT, OS_LGUI, OS_NAV , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
 
@@ -88,27 +90,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         * `-----------------------------------------------------------------------------------------'
         */
 	[NUMER] = LAYOUT(
-		KC_GRV , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, KC_DEL,
-		KC_GRV , _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
 		_______, _______, KC_3   , KC_2   , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, KC_6   , MRCTL_7, _______, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
-        /* NUMSH
+        /* SYMBL
         * ,-----------------------------------------------------------------------------------------.
-        * |       |     |  {  |     |  }  |     |     |     |     |     |     |     |     |         |
+        * |       |     |  $  |  <  |  >  |     |     |  {  |  }  |  ^  |     |     |     |         |
         * |-----------------------------------------------------------------------------------------+
-        * |         |     |  (  |     |  )  |  #  |     |  [  |     |  ]  |     |     |             |
+        * |         |  @  |  ~  |  [  |  ]  |  #  |     |  (  |  )  |  "  |  %  |     |             |
         * |-----------------------------------------------------------------------------------------+
-        * |           |     |  ?  |  `  |  !  |     |     |  _  |     |     |     |                 |
+        * |           |     |  ?  |  `  |  !  |     |     |  _  |  |  |  &  |     |                 |
         * |-----------------------------------------------------------------------------------------+
         * |       |      |      |              Spc                  |      |      |     |     |     |
         * `-----------------------------------------------------------------------------------------'
         */
-	[NUMSH] = LAYOUT(
-		KC_GRV , KC_F1  , KC_F2  , KC_F3  , KC_F4  , KC_F5  , KC_F6  , KC_F7  , KC_F8  , KC_F9  , KC_F10 , KC_F11 , KC_F12 , _______, KC_DEL,
-		KC_GRV , _______, _______, _______, KC_EQL , _______, _______, KC_ASTR, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, KC_HASH, KC_SCLN, _______, _______, _______, _______, _______, _______,
-		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXCL, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
+	[SYMBL] = LAYOUT(
+		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+		_______, _______, KC_DLR , KC_LCBR, KC_RCBR, _______, _______, KC_LCBR, KC_RCBR  , KC_CIRC, _______, _______, _______, _______,
+		_______, KC_AT  , KC_TILD, KC_LBRC, KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_LPRN, KC_DQT , KC_PERC, _______, _______,
+		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
 	[NAVIG] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
