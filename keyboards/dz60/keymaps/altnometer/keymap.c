@@ -28,6 +28,7 @@ enum layers {
 #define T_NUMER TT(NUMER)
 #define OS_NAV OSL(NAVIG)
 #define MO_MOUS MO(MOUSE)
+#define L_SYM2 LT(SYMBL, KC_2)
 
 // Modifier Switching.
 #define  MLSFT_D MT(MOD_LSFT, KC_D)
@@ -39,7 +40,8 @@ enum layers {
 #define  MRALT_0 MT(MOD_RALT, KC_0)
 
 #define  MRCTL_L MT(MOD_RCTL, KC_L)
-#define  MRCTL_S MT(MOD_LCTL, KC_S)
+#define  MLCTL_S MT(MOD_LCTL, KC_S)
+#define  MCTL_BR MT(MOD_LCTL, KC_LBRC)
 
 #define  MRCTL_7 MT(MOD_RCTL, KC_7)
 
@@ -74,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		OS_LGUI, L_SYMA , MRCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, L_SYMSC, KC_QUOT, KC_ENT ,
+		OS_LGUI, L_SYMA , MLCTL_S, MLSFT_D, MLALT_F, KC_G   , KC_H   , MRALT_J, MRSFT_K, MRCTL_L, L_SYMSC, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		KC_LALT, OS_LGUI, OS_NAV , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
 
@@ -92,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, _______, KC_3   , KC_2   , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, KC_6   , MRCTL_7, _______, _______, _______,
+		_______, _______, KC_3   , L_SYM2 , MLALT_1, KC_DOT , KC_SCLN, MRALT_0, KC_6   , MRCTL_7, _______, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
         /* SYMBL
@@ -109,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_LT  , KC_GT  , KC_TILD, _______, _______, KC_CIRC, KC_LCBR  , KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , KC_LBRC, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN , KC_PERC, _______, _______,
+		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN , KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, KC_BSPC, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
 	[NAVIG] = LAYOUT(
