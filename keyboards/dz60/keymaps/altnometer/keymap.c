@@ -23,19 +23,19 @@ enum layers {
 
 // Layer Switching.
 #define L_NUMSP LT(NUMER, KC_SPC)
-#define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSC LT(SYMBL, KC_SCLN)
 #define T_NUMER TT(NUMER)
 #define OS_NAV OSL(NAVIG)
 #define MO_MOUS MO(MOUSE)
 #define L_SYM2 LT(SYMBL, KC_2)
 #define L_SYM6 LT(SYMBL, KC_6)
+#define L_SYMF LT(SYMBL, KC_F)
 
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
 
-#define  MLALT_F MT(MOD_LALT, KC_F)
+#define  MLALT_A MT(MOD_LALT, KC_A)
 #define  MRALT_J MT(MOD_RALT, KC_J)
 #define  MLALT_1 MT(MOD_LALT, KC_1)
 #define  MRALT_0 MT(MOD_RALT, KC_0)
@@ -77,7 +77,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		OS_LGUI, L_SYMA , MCTL_S, MSFT_D , MLALT_F, KC_G   , KC_H   , MRALT_J, MSFT_K , MCTL_L , L_SYMSC, KC_QUOT, KC_ENT ,
+		OS_LGUI, MLALT_A, MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , MRALT_J, MSFT_K , MCTL_L , L_SYMSC, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		KC_LALT, OS_LGUI, OS_NAV , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
 
