@@ -22,14 +22,14 @@ enum layers {
 #define MS_ACCEL1 KC_MS_ACCEL1
 
 // Layer Switching.
-#define L_NUMSP LT(NUMER, KC_SPC)
-#define T_NUMER TT(NUMER)
-#define OS_NAV OSL(NAVIG)
-#define MO_MOUS MO(MOUSE)
+#define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
 #define L_SYMF LT(SYMBL, KC_F)
 #define L_SYMJ LT(SYMBL, KC_J)
+/* #define OS_NUM OSL(NUMER) */
+#define T_NUMER TT(NUMER)
+#define MO_MOUS MO(MOUSE)
 
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
@@ -76,9 +76,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BASE] = LAYOUT(
 		F(0)   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		OS_LGUI, MALT_A, MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
+		T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		KC_LALT, OS_LGUI, OS_NAV , L_NUMSP, L_NUMSP, L_NUMSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
+		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, T_NUMER, KC_RALT, XXXXXXX, MO_MOUS, XXXXXXX),
 
         /* NUMER
         * ,-----------------------------------------------------------------------------------------.
@@ -118,8 +118,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, _______, _______,
 		_______, _______, KC_LCTL, KC_LSFT, KC_LALT, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______, KC_BSPC, KC_PGUP, KC_PGDN, _______, _______, _______, _______,
-		_______, _______, _______, KC_ENT , KC_ENT , KC_ENT , _______, _______, _______, _______, _______),
+		_______, _______, _______, _______, _______, _______, KC_ENT , KC_BSPC, KC_PGUP, KC_PGDN, _______, _______, _______, _______,
+		_______, _______, _______, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
 
 	[MOUSE] = LAYOUT(
 		_______, M(1)   , M(2)   , M(3)   , M(4)   , M(5)   , M(6)   , M(7)   , M(8)   , M(9)   , M(10)   , M(11) , M(12)  , _______, _______,
