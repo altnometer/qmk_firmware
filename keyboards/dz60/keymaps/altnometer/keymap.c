@@ -23,8 +23,8 @@ enum layers {
 #define MS_ACCEL1 KC_MS_ACCEL1
 
 // Layer Switching.
-#define L_BASE2 LT(BASE, KC_2)
-#define L_BASE6 LT(BASE, KC_6)
+#define L_BS2 LT(BASE, KC_2)
+#define L_BS6 LT(BASE, KC_6)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, KC_LALT, MCTL_3 , L_BASE2, L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , L_BASE6, MCTL_7 , KC_LALT, _______, _______,
+		_______, KC_LALT, MCTL_3 , L_BS2  , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , L_BS6  , MCTL_7 , KC_LALT, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
         /* SYMBL
