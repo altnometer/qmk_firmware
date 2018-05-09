@@ -26,7 +26,6 @@ enum layers {
 #define L_BS2 LT(BASE, KC_2)
 #define L_BS6 LT(BASE, KC_6)
 #define L_BSDLR LT(BASE, KC_DLR)
-#define L_BSDQT LT(BASE, KC_DQT)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -115,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , KC_GT  , KC_TILD, _______, _______, KC_CIRC, KC_LCBR  , KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , MCTL_BR, L_BSDLR, KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, L_BSDQT, KC_RPRN , KC_PERC, _______, _______,
-		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE , KC_COLN, _______, _______, _______,
+		_______, _______, KC_LT  , KC_GT  , KC_TILD, _______, _______, KC_CIRC, KC_LCBR, KC_RCBR, _______, _______, _______, _______,
+		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
+		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
     // the layer is raised from numeric layer, it mimics the default _BASE.
 	[BASE] = LAYOUT(
