@@ -56,12 +56,8 @@ enum layers {
 #define  KC_RGHT KC_RIGHT
 #define  KC_PGDN KC_PGDOWN
 
-// Tap Dance Declarations.
-enum {
-    TD_8_AST = 0
-};
-#define TD_8AST TD(TD_8_AST)
-
+#include "keycode_functions.h"
+#include "tapdance.h"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         /* Layer 0
@@ -114,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , KC_GT  , KC_TILD, _______, _______, KC_CIRC, KC_LCBR, KC_RCBR, _______, _______, _______, _______,
+		_______, _______, KC_LT  , KC_GT  , TD_TILD, _______, _______, KC_CIRC, KC_LCBR, KC_RCBR, _______, _______, _______, _______,
 		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
@@ -181,11 +177,3 @@ void led_set_user(uint8_t usb_led) {
         DDRB &= ~(1 << 2); PORTB &= ~(1 << 2);
     }
 }
-
-// Tap Dance Definitions.
-qk_tap_dance_action_t tap_dance_actions[] = {
-  //Tap once for 8, twice for *
-  [TD_8_AST]  = ACTION_TAP_DANCE_DOUBLE(KC_8, KC_ASTR)
-// Other declarations would go here, separated by commas, if you have them
-};
-
