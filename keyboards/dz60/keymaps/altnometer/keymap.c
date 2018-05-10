@@ -122,8 +122,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		_______, _______, _______, KC_ENT , KC_ENT , KC_ENT , _______, _______, XXXXXXX, _______, XXXXXXX),
 	[NAVIG] = LAYOUT(
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, _______, _______,
+		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, RESET ,
+		_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, RGB_M_P, RGB_TOG,
 		_______, KC_LALT, KC_LCTL, KC_LSFT, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
 		_______, _______, _______, _______, _______, KC_ENT , KC_BSPC, KC_BSPC, KC_ENT , KC_PGUP, KC_PGDN, _______, _______, _______,
 		_______, _______, _______, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
@@ -177,3 +177,34 @@ void led_set_user(uint8_t usb_led) {
         DDRB &= ~(1 << 2); PORTB &= ~(1 << 2);
     }
 }
+
+bool has_layer_changed = true;
+
+void matrix_scan_user(void) {
+  uint8_t layer = biton32(layer_state);
+  static uint8_t old_layer = 0;
+
+  if (old_layer != layer) {
+    has_layer_changed = true;
+    old_layer = layer;
+  }
+
+  if (has_layer_changed) {
+    has_layer_changed = false;
+
+    switch (layer) {
+      case NUMER:
+        rgblight_enable();
+        rgblight_sethsv (120,255,255); // green
+      break;
+      case MOUSE:
+        rgblight_enable();
+        rgblight_sethsv (0,255,255); // red
+        /* rgblight_sethsv (240,255,255); // blue */
+      break;
+      default:
+        rgblight_disable();
+      break;
+    }
+  }
+};
