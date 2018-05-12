@@ -45,6 +45,8 @@ enum layers {
 #define  MCTL_L MT(MOD_RCTL, KC_L)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
 #define  MCTL_BR MT(MOD_LCTL, KC_LBRC)
+/* #define  MCTL_PR MT(MOD_RCTL, S(KC_RPRN)) */
+#define  MCTL_PR MT(MOD_RCTL, S(KC_0))
 
 #define  MCTL_7 MT(MOD_RCTL, KC_7)
 #define  MCTL_3 MT(MOD_RCTL, KC_3)
@@ -78,7 +80,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, T_NUMER, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
+		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
 
         /* NUMER
         * ,-----------------------------------------------------------------------------------------.
@@ -93,7 +95,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
+		_______, _______, KC_5   , KC_4   , TD_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
 		_______, KC_LALT, MCTL_3 , L_BS2  , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , L_BS6  , MCTL_7 , KC_LALT, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
@@ -111,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_LT  , KC_GT  , TD_TILD, _______, _______, KC_CIRC, KC_LCBR, KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
+		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , MCTL_PR, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
     // the layer is raised from numeric layer, it mimics the default _BASE.
