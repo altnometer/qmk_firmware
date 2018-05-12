@@ -199,11 +199,14 @@ void matrix_scan_user(void) {
       case MOUSE:
         rgblight_enable();
         rgblight_sethsv (0,255,255); // red
-        /* rgblight_sethsv (240,255,255); // blue */
       break;
       default:
         rgblight_disable();
       break;
     }
+  }
+  if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
+    rgblight_enable();
+    rgblight_sethsv (240,255,255); // blue
   }
 };
