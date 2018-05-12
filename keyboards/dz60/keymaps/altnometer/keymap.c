@@ -25,7 +25,6 @@ enum layers {
 // Layer Switching.
 #define L_BS2 LT(BASE, KC_2)
 #define L_BS6 LT(BASE, KC_6)
-#define L_BSDLR LT(BASE, KC_DLR)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
