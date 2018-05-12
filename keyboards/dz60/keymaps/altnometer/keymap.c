@@ -5,10 +5,10 @@
 #define XXXXXXX KC_NO
 // Layers Declarations.
 enum layers {
-    _BASE = 0,
+    _QWERTY = 0,
     NUMER,
     SYMBL,
-    BASE,
+    QWERTY,
     NAVIG,
     MOUSE,
 };
@@ -23,8 +23,8 @@ enum layers {
 #define MS_ACCEL1 KC_MS_ACCEL1
 
 // Layer Switching.
-#define L_BS2 LT(BASE, KC_2)
-#define L_BS6 LT(BASE, KC_6)
+#define L_BS2 LT(QWERTY, KC_2)
+#define L_BS6 LT(QWERTY, KC_6)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         * |  Alt  | Ctrl |  GUI |             Space                 | Ctrl | Alt  | FN3 |     |     |
         * `-----------------------------------------------------------------------------------------'
         */
-	[_BASE] = LAYOUT(
+	[_QWERTY] = LAYOUT(
 		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, KC_ENT ,
@@ -113,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
-    // the layer is raised from numeric layer, it mimics the default _BASE.
-	[BASE] = LAYOUT(
+    // the layer is raised from numeric layer, it mimics the default _QWERTY.
+	[QWERTY] = LAYOUT(
 		_______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		_______, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		_______, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
