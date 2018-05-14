@@ -10,6 +10,7 @@ enum layers {
     ,NUMER
     ,SYMBL
     ,QWERTY
+    ,_BEAKLSH
     ,NAVIG
     ,MOUSE
 };
@@ -227,34 +228,60 @@ void led_set_user(uint8_t usb_led) {
 
 bool has_layer_changed = true;
 
-void matrix_scan_user(void) {
-  uint8_t layer = biton32(layer_state);
-  static uint8_t old_layer = 0;
+/* void matrix_scan_user(void) { */
+/*   uint8_t layer = biton32(layer_state); */
+/*   static uint8_t old_layer = 0; */
 
-  if (old_layer != layer) {
-    has_layer_changed = true;
-    old_layer = layer;
-  }
+/*   if (old_layer != layer) { */
+/*     has_layer_changed = true; */
+/*     old_layer = layer; */
+/*   } */
 
-  if (has_layer_changed) {
-    has_layer_changed = false;
+/*   if (has_layer_changed) { */
+/*     has_layer_changed = false; */
 
-    switch (layer) {
-      case NUMER:
+/*     switch (layer) { */
+/*       case NUMER: */
+/*         rgblight_enable(); */
+/*         rgblight_sethsv (120,255,255); // green */
+/*       break; */
+/*       case MOUSE: */
+/*         rgblight_enable(); */
+/*         rgblight_sethsv (0,255,255); // red */
+/*       break; */
+/*       default: */
+/*         rgblight_disable(); */
+/*       break; */
+/*     } */
+/*   } */
+/*   if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) { */
+/*     rgblight_enable(); */
+/*     rgblight_sethsv (240,255,255); // blue */
+/*   } */
+/* }; */
+
+uint32_t layer_state_set_user(uint32_t state) {
+    switch (biton32(state)) {
+    /* case _QWERTY: */
+    /*     rgblight_enable(); */
+    /*     rgblight_setrgb (0x00,  0x00, 0xFF); */
+    /*     break; */
+    case _BEAKL:
         rgblight_enable();
-        rgblight_sethsv (120,255,255); // green
-      break;
-      case MOUSE:
+        rgblight_setrgb (0xFF,  0x00, 0x00);
+        break;
+    case NUMER:
         rgblight_enable();
-        rgblight_sethsv (0,255,255); // red
-      break;
-      default:
+        rgblight_setrgb (0x00,  0xFF, 0x00);
+        break;
+    case MOUSE:
+        rgblight_enable();
+        rgblight_setrgb (0x7A,  0x00, 0xFF);
+        break;
+    default: //  for any other layers, or the default layer
         rgblight_disable();
-      break;
+        /* rgblight_setrgb (0x00,  0xFF, 0xFF); */
+        break;
     }
-  }
-  if (host_keyboard_leds() & (1<<USB_LED_CAPS_LOCK)) {
-    rgblight_enable();
-    rgblight_sethsv (240,255,255); // blue
-  }
-};
+  return state;
+}
