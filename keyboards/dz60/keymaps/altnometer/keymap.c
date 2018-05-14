@@ -5,12 +5,13 @@
 #define XXXXXXX KC_NO
 // Layers Declarations.
 enum layers {
-    _QWERTY = 0,
-    NUMER,
-    SYMBL,
-    QWERTY,
-    NAVIG,
-    MOUSE,
+     _QWERTY = 0
+    ,_BEAKL
+    ,NUMER
+    ,SYMBL
+    ,QWERTY
+    ,NAVIG
+    ,MOUSE
 };
 
 // Mouse Declarations.
@@ -26,22 +27,31 @@ enum layers {
 #define L_BS2 LT(QWERTY, KC_2)
 #define L_BS6 LT(QWERTY, KC_6)
 #define L_NAVSP LT(NAVIG, KC_SPC)
+
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
 #define L_SYMF LT(SYMBL, KC_F)
 #define L_SYMJ LT(SYMBL, KC_J)
+#define L_SYMS LT(SYMBL, KC_S)
+#define L_SYMA LT(SYMBL, KC_A)
 /* #define OS_NUM OSL(NUMER) */
 #define T_NUMER TT(NUMER)
 #define T_MOUSE TT(MOUSE)
 
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
+#define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
+#define  MSFT_R MT(MOD_RSFT, KC_R)
 
 #define  MALT_A MT(MOD_LALT, KC_A)
+#define  MALT_Y MT(MOD_LALT, KC_Y)
 #define  MALT_SC MT(MOD_RALT, KC_SCLN)
+#define  MALT_W MT(MOD_RALT, KC_W)
 
 #define  MCTL_L MT(MOD_RCTL, KC_L)
+#define  MCTL_T MT(MOD_RCTL, KC_T)
+#define  MCTL_I MT(MOD_RCTL, KC_I)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
 #define  MCTL_BR MT(MOD_LCTL, KC_LBRC)
 
@@ -59,7 +69,7 @@ enum layers {
 #include "tapdance.h"
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-        /* Layer 0
+        /* _QWERTY
         * ,-----------------------------------------------------------------------------------------.
         * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   Bspc    |
         * |-----------------------------------------------------------------------------------------+
@@ -77,6 +87,44 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
+		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
+        /* BEAKL10
+        * ,-----------------------------------------------------------------------------------------.
+        * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   Bspc    |
+        * |-----------------------------------------------------------------------------------------+
+        * | Tab   |  Q  |  H  |  O  |  U  |  X  |  G  |  D  |  N  |  M  |  V  |  [  |  ]  |    \    |
+        * |-----------------------------------------------------------------------------------------+
+        * |  FN2    |  Y  |  I  |  E  |  A  |  .  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
+        * |-----------------------------------------------------------------------------------------+
+        * | Shift     |  J  |  /  |  '  |  ,  |  Z  |  B  |  P  |  L  |  F  |  K  |     Shift       |
+        * |-----------------------------------------------------------------------------------------+
+        * |  Alt  | Ctrl |  GUI |             Space                 | Ctrl | Alt  | FN3 |     |     |
+        * `-----------------------------------------------------------------------------------------'
+        */
+	[_BEAKL] = LAYOUT(
+		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
+		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
+		T_NUMER, MALT_Y , MCTL_I , MSFT_E , L_SYMA , KC_DOT , KC_H   , L_SYMS , MSFT_R , MCTL_T , MALT_W , T_NUMER, KC_ENT ,
+		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , KC_B   , KC_P   , KC_L, KC_F , KC_K, KC_RSFT, XXXXXXX,
+		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
+        /* BEAKLSH, custom SHIFT layer.
+        * ,-----------------------------------------------------------------------------------------.
+        * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   Bspc    |
+        * |-----------------------------------------------------------------------------------------+
+        * | Tab   |  Q  |  H  |  O  |  U  |  X  |  G  |  D  |  N  |  M  |  V  |  [  |  ]  |    \    |
+        * |-----------------------------------------------------------------------------------------+
+        * |  FN2    |  Y  |  I  |  E  |  A  |  .  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
+        * |-----------------------------------------------------------------------------------------+
+        * | Shift     |  J  |  ?  |  `  |  !  |  Z  |  B  |  P  |  L  |  F  |  K  |     Shift       |
+        * |-----------------------------------------------------------------------------------------+
+        * |  Alt  | Ctrl |  GUI |             Space                 | Ctrl | Alt  | FN3 |     |     |
+        * `-----------------------------------------------------------------------------------------'
+        */
+	[_BEAKLSH] = LAYOUT(
+		KC_ESC , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_UNDS, KC_PLUS, XXXXXXX, KC_BSPC,
+		KC_TAB , S(KC_Q), S(KC_H), S(KC_O), S(KC_U), S(KC_X), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), KC_LCBR, KC_RCBR, KC_PIPE,
+		T_NUMER, KC_Y   , KC_I   , KC_E   , KC_A   , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, KC_ENT ,
+		KC_LSFT, XXXXXXX, KC_J   , KC_GRV , KC_EXLM, KC_Z   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
 
         /* NUMER
