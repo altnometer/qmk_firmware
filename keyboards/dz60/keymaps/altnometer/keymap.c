@@ -224,6 +224,12 @@ void led_set_user(uint8_t usb_led) {
     } else {
         DDRB &= ~(1 << 2); PORTB &= ~(1 << 2);
     }
+    if (usb_led & (1<<USB_LED_CAPS_LOCK)) {
+        rgblight_enable();
+        rgblight_setrgb (0xFF,  0x00, 0x00);
+    } else {
+        /* rgblight_disable(); */
+    }
 }
 
 bool has_layer_changed = true;
