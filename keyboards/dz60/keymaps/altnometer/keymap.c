@@ -18,6 +18,8 @@ enum planck_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
   ,BACKLT
+  ,MCT_RPR   // pseudo CTL_T(S(KC_0))
+  /* ,MSF_RPR   // pseudo SFT_T(S(KC_0)) */
 };
 
 // Mouse Declarations.
@@ -163,8 +165,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , TD_TILD, KC_GT  , _______, _______, KC_RbBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
+		_______, _______, KC_LT  , TD_TILD, KC_GT  , _______, _______, KC_LCBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
+		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , MCT_RPR, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
     // the layer is raised from numeric layer, it mimics the default _QWERTY.
@@ -327,6 +329,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MCT_RPR:
+      mt_shift(record, KC_LCTL, 0, KC_0);
   }
   return true;
 }
