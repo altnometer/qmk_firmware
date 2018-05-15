@@ -9,10 +9,15 @@ enum layers {
     ,_BEAKL
     ,NUMER
     ,SYMBL
-    ,QWERTY
+    ,QWERTY1  // for lower layers to access qwerty. probably should be removed.
     ,_BEAKLSH
     ,NAVIG
     ,MOUSE
+};
+enum planck_keycodes {
+   QWERTY = SAFE_RANGE
+  ,BEAKL
+  ,BACKLT
 };
 
 // Mouse Declarations.
@@ -25,8 +30,8 @@ enum layers {
 #define MS_ACCEL1 KC_MS_ACCEL1
 
 // Layer Switching.
-#define L_BS2 LT(QWERTY, KC_2)
-#define L_BS6 LT(QWERTY, KC_6)
+#define L_BS2 LT(QWERTY1, KC_2)
+#define L_BS6 LT(QWERTY1, KC_6)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 
 #define L_SYM1 LT(SYMBL, KC_1)
@@ -163,7 +168,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
     // the layer is raised from numeric layer, it mimics the default _QWERTY.
-	[QWERTY] = LAYOUT(
+	[QWERTY1] = LAYOUT(
 		_______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		_______, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
 		_______, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
@@ -290,4 +295,38 @@ uint32_t layer_state_set_user(uint32_t state) {
         break;
     }
   return state;
+}
+
+/* uint32_t layer_state_set_user(uint32_t state) { */
+/*   return update_tri_layer_state(state, NUMER, SYMBL, _ADJUST); */
+/* } */
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false;
+      break;
+    case BEAKL:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_BEAKL);
+      }
+      return false;
+      break;
+    case BACKLT:
+      if (record->event.pressed) {
+        register_code(KC_RSFT);
+        #ifdef BACKLIGHT_ENABLE
+          backlight_step();
+        #endif
+        PORTE &= ~(1<<6);
+      } else {
+        unregister_code(KC_RSFT);
+        PORTE |= (1<<6);
+      }
+      return false;
+      break;
+  }
+  return true;
 }
