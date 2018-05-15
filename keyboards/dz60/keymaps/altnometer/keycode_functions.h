@@ -32,3 +32,25 @@ bool key_press(uint8_t shift, uint16_t keycode)
   }
   return false;
 }
+
+// ALT_T, CTL_T, GUI_T, SFT_T for shifted keycodes
+void mt_shift(keyrecord_t *record, uint16_t modifier, uint16_t modifier2, uint16_t keycode)
+{
+  if (record->event.pressed) {
+    key_timer = timer_read();
+    register_code(modifier);
+    if (modifier2) {
+      register_code(modifier2);
+    }
+  }
+  else {
+    unregister_code(modifier);
+    if (modifier2) {
+      unregister_code(modifier2);
+    }
+    if (timer_elapsed(key_timer) < TAPPING_TERM) {
+      shift_key(keycode);
+    }
+    key_timer = 0;
+  }
+}
