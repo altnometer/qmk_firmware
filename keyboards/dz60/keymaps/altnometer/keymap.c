@@ -18,8 +18,6 @@ enum planck_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
   ,BACKLT
-  ,MCT_RPR   // pseudo CTL_T(S(KC_0))
-  /* ,MSF_RPR   // pseudo SFT_T(S(KC_0)) */
 };
 
 // Mouse Declarations.
@@ -42,20 +40,22 @@ enum planck_keycodes {
 #define L_SYMJ LT(SYMBL, KC_J)
 #define L_SYMS LT(SYMBL, KC_S)
 #define L_SYMA LT(SYMBL, KC_A)
+
+#define  L_BKLSE LT(_BEAKLSH, KC_E)
+#define  L_BKLSR LT(_BEAKLSH, KC_R)
 /* #define OS_NUM OSL(NUMER) */
 #define T_NUMER TT(NUMER)
 #define T_MOUSE TT(MOUSE)
 
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
-#define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
-#define  MSFT_R MT(MOD_RSFT, KC_R)
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
 #define  MALT_SC MT(MOD_RALT, KC_SCLN)
 #define  MALT_W MT(MOD_RALT, KC_W)
+
 
 #define  MCTL_L MT(MOD_RCTL, KC_L)
 #define  MCTL_T MT(MOD_RCTL, KC_T)
@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[_BEAKL] = LAYOUT(
 		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
-		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		T_NUMER, MALT_Y , MCTL_I , MSFT_E , L_SYMA , KC_DOT , KC_H   , L_SYMS , MSFT_R , MCTL_T , MALT_W , T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , KC_B   , KC_P   , KC_L, KC_F , KC_K, KC_RSFT, XXXXXXX,
+		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_G   , KC_D   , KC_N   , KC_M   , KC_V   , KC_LBRC, KC_RBRC, KC_BSLS,
+		T_NUMER, MALT_Y , MCTL_I , L_BKLSE, L_SYMA , KC_DOT , KC_C   , L_SYMS , L_BKLSR, MCTL_T , MALT_W , T_NUMER, KC_ENT ,
+		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
         /* BEAKLSH, custom SHIFT layer.
         * ,-----------------------------------------------------------------------------------------.
@@ -121,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         * |-----------------------------------------------------------------------------------------+
         * | Tab   |  Q  |  H  |  O  |  U  |  X  |  G  |  D  |  N  |  M  |  V  |  [  |  ]  |    \    |
         * |-----------------------------------------------------------------------------------------+
-        * |  FN2    |  Y  |  I  |  E  |  A  |  .  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
+        * |  FN2    |  Y  |  I  |  E  |  A  |  #  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
         * |-----------------------------------------------------------------------------------------+
         * | Shift     |  J  |  ?  |  `  |  !  |  Z  |  B  |  P  |  L  |  F  |  K  |     Shift       |
         * |-----------------------------------------------------------------------------------------+
@@ -130,9 +130,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[_BEAKLSH] = LAYOUT(
 		KC_ESC , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_UNDS, KC_PLUS, XXXXXXX, KC_BSPC,
-		KC_TAB , S(KC_Q), S(KC_H), S(KC_O), S(KC_U), S(KC_X), S(KC_Y), S(KC_U), S(KC_I), S(KC_O), S(KC_P), KC_LCBR, KC_RCBR, KC_PIPE,
-		T_NUMER, KC_Y   , KC_I   , KC_E   , KC_A   , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, KC_J   , KC_GRV , KC_EXLM, KC_Z   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
+		KC_TAB , S(KC_Q), S(KC_H), S(KC_O), S(KC_U), S(KC_X), S(KC_G), S(KC_D), S(KC_N), S(KC_M), S(KC_V), KC_LCBR, KC_RCBR, KC_PIPE,
+		T_NUMER, S(KC_Y), S(KC_I), S(KC_E), S(KC_A), KC_HASH, S(KC_C), S(KC_S), S(KC_R), S(KC_T), S(KC_W), T_NUMER, KC_ENT ,
+		KC_LSFT, XXXXXXX, S(KC_J), KC_QUES, KC_GRV , KC_EXLM, S(KC_Z), S(KC_B), S(KC_P), S(KC_L), S(KC_F), S(KC_K), KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
 
         /* NUMER
@@ -166,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_LT  , TD_TILD, KC_GT  , _______, _______, KC_LCBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , MCT_RPR, KC_PERC, _______, _______,
+		_______, KC_AT  , MCTL_BR, KC_DLR , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DQT , KC_RPRN, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
     // the layer is raised from numeric layer, it mimics the default _QWERTY.
@@ -178,7 +178,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, KC_ENT , KC_ENT , KC_ENT , _______, _______, XXXXXXX, _______, XXXXXXX),
 	[NAVIG] = LAYOUT(
 		_______, _______, _______, _______, RESET  , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, RGB_M_P, RGB_TOG,
+		_______, _______, QWERTY , BEAKL  , _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, RGB_M_P, RGB_TOG,
 		_______, KC_LALT, KC_LCTL, KC_LSFT, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
 		_______, XXXXXXX, _______, _______, KC_CAPS, KC_ENT , KC_BSPC, KC_BSPC, KC_ENT , KC_PGUP, KC_PGDN, _______, _______, _______,
 		_______, _______, _______, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
@@ -329,8 +329,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case MCT_RPR:
-      mt_shift(record, KC_LCTL, 0, KC_0);
   }
   return true;
 }
