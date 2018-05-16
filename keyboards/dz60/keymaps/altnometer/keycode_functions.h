@@ -15,6 +15,9 @@ void shift_key(uint16_t keycode)
   unregister_code(KC_LSFT);
 }
 
+#define SHIFT   1
+#define NOSHIFT 0
+
 static uint16_t key_timer = 0;
 
 bool key_press(uint8_t shift, uint16_t keycode)
@@ -51,6 +54,22 @@ void mt_shift(keyrecord_t *record, uint16_t modifier, uint16_t modifier2, uint16
     if (timer_elapsed(key_timer) < TAPPING_TERM) {
       shift_key(keycode);
     }
+    key_timer = 0;
+  }
+}
+
+// LT for S(keycode)
+void lt_shift(keyrecord_t *record, uint16_t keycode, uint8_t layer)
+{
+  if (record->event.pressed) {
+    key_timer = timer_read();
+    layer_on(layer);
+  }
+  else {
+    layer_off(layer);
+    // for shifted keycodes, hence, LT_SHIFT
+    key_press(SHIFT, keycode);
+    clear_mods();
     key_timer = 0;
   }
 }
