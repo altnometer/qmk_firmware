@@ -302,6 +302,8 @@ uint32_t layer_state_set_user(uint32_t state) {
 /* uint32_t layer_state_set_user(uint32_t state) { */
 /*   return update_tri_layer_state(state, NUMER, SYMBL, _ADJUST); */
 /* } */
+#define SHIFT_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+static uint8_t sft_comm_on;  // shift and comma pressed
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
@@ -329,6 +331,22 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MY_COMM:
+      if (record->event.pressed) {
+        sft_comm_on = get_mods()&SHIFT_MODS;
+        if (sft_comm_on) {
+          register_code(KC_1);
+        } else {
+          register_code(KC_COMM);
+        }
+      } else {
+        if (sft_comm_on) {
+          unregister_code(KC_1);
+        } else {
+          unregister_code(KC_COMM);
+        }
+      }
+        break;
   }
   return true;
 }
