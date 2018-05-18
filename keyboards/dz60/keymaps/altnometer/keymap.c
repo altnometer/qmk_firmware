@@ -10,7 +10,6 @@ enum layers {
     ,NUMER
     ,SYMBL
     ,QWERTY1  // for lower layers to access qwerty. probably should be removed.
-    ,_BEAKLSH
     ,NAVIG
     ,MOUSE
 };
@@ -117,25 +116,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_G   , KC_D   , KC_N   , KC_M   , KC_V   , KC_LBRC, KC_RBRC, KC_BSLS,
 		T_NUMER, MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W , T_NUMER, KC_ENT ,
 		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
-		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
-        /* BEAKLSH, custom SHIFT layer.
-        * ,-----------------------------------------------------------------------------------------.
-        * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   Bspc    |
-        * |-----------------------------------------------------------------------------------------+
-        * | Tab   |  Q  |  H  |  O  |  U  |  X  |  G  |  D  |  N  |  M  |  V  |  [  |  ]  |    \    |
-        * |-----------------------------------------------------------------------------------------+
-        * |  FN2    |  Y  |  I  |  E  |  A  |  #  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
-        * |-----------------------------------------------------------------------------------------+
-        * | Shift     |  J  |  ?  |  `  |  !  |  Z  |  B  |  P  |  L  |  F  |  K  |     Shift       |
-        * |-----------------------------------------------------------------------------------------+
-        * |  Alt  | Ctrl |  GUI |             Space                 | Ctrl | Alt  | FN3 |     |     |
-        * `-----------------------------------------------------------------------------------------'
-        */
-	[_BEAKLSH] = LAYOUT(
-		KC_ESC , S(KC_1), S(KC_2), S(KC_3), S(KC_4), S(KC_5), S(KC_6), S(KC_7), S(KC_8), S(KC_9), S(KC_0), KC_UNDS, KC_PLUS, XXXXXXX, KC_BSPC,
-		KC_TAB , S(KC_Q), S(KC_H), S(KC_O), S(KC_U), S(KC_X), S(KC_G), S(KC_D), S(KC_N), S(KC_M), S(KC_V), KC_LCBR, KC_RCBR, KC_PIPE,
-		T_NUMER, S(KC_Y), S(KC_I), S(KC_E), S(KC_A), KC_HASH, S(KC_C), S(KC_S), S(KC_R), S(KC_T), S(KC_W), T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, S(KC_J), KC_QUES, KC_GRV , KC_EXLM, S(KC_Z), S(KC_B), S(KC_P), S(KC_L), S(KC_F), S(KC_K), KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
 
         /* NUMER
