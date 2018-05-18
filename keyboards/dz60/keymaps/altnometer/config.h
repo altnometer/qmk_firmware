@@ -11,7 +11,8 @@ the Free Software Foundation, either version 2 of the License, or
 #include "../../config.h"
 
 #define TAPPING_TOGGLE 1
-#define TAPPING_TERM 200
+/* #define TAPPING_TERM 200 */
+#define TAPPING_TERM 170
 /* #define ONESHOT_TAP_TOGGLE 3 */
 /* #define ONESHOT_LAYER_TOGGLE 3 */
 /* #define ONESHOT_TIMEOUT 800 */
