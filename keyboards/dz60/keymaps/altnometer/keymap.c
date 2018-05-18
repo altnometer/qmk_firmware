@@ -18,6 +18,8 @@ enum planck_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
   ,MY_COMM
+  ,MY_DOT
+  ,MY_QUOT
   ,BACKLT
 };
 
@@ -42,8 +44,6 @@ enum planck_keycodes {
 #define L_SYMS LT(SYMBL, KC_S)
 #define L_SYMA LT(SYMBL, KC_A)
 
-#define  L_BKLSE LT(_BEAKLSH, KC_E)
-#define  L_BKLSR LT(_BEAKLSH, KC_R)
 /* #define OS_NUM OSL(NUMER) */
 #define T_NUMER TT(NUMER)
 #define T_MOUSE TT(MOUSE)
@@ -51,6 +51,8 @@ enum planck_keycodes {
 // Modifier Switching.
 #define  MSFT_D MT(MOD_LSFT, KC_D)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
+#define  MSFT_E MT(MOD_LSFT, KC_E)
+#define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT as MY_QUOT is scripted to use it.
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
@@ -113,8 +115,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[_BEAKL] = LAYOUT(
 		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_G   , KC_D   , KC_N   , KC_M   , KC_V   , KC_LBRC, KC_RBRC, KC_BSLS,
-		T_NUMER, MALT_Y , MCTL_I , L_BKLSE, L_SYMA , KC_DOT , KC_C   , L_SYMS , L_BKLSR, MCTL_T , MALT_W , T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, MY_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
+		T_NUMER, MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W , T_NUMER, KC_ENT ,
+		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
         /* BEAKLSH, custom SHIFT layer.
         * ,-----------------------------------------------------------------------------------------.
@@ -304,7 +306,7 @@ uint32_t layer_state_set_user(uint32_t state) {
 /*   return update_tri_layer_state(state, NUMER, SYMBL, _ADJUST); */
 /* } */
 #define SHIFT_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
-static uint8_t sft_comm_on;  // shift and comma pressed
+static uint8_t shift_on;  // shift and comma pressed
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
@@ -332,22 +334,56 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
+    case MY_QUOT:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          unregister_mods(MOD_BIT(KC_LSFT));
+          register_code(KC_GRV);
+          register_mods(MOD_BIT(KC_LSFT));
+        } else {
+          register_code(KC_QUOT);
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_GRV);
+        } else {
+          unregister_code(KC_QUOT);
+        }
+      }
+      break;
+    case MY_DOT:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          register_code(KC_3);
+        } else {
+          register_code(KC_DOT);  // for shifted KC_HASH
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_3);  // for shifted KC_HASH
+        } else {
+          unregister_code(KC_DOT);
+        }
+      }
+      break;
     case MY_COMM:
       if (record->event.pressed) {
-        sft_comm_on = get_mods()&SHIFT_MODS;
-        if (sft_comm_on) {
-          register_code(KC_1);
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          register_code(KC_1);  // for shifted KC_EXCL
         } else {
           register_code(KC_COMM);
         }
       } else {
-        if (sft_comm_on) {
-          unregister_code(KC_1);
+        if (shift_on) {
+          unregister_code(KC_1);  // for shifted KC_EXCL
         } else {
           unregister_code(KC_COMM);
         }
       }
-        break;
+      break;
   }
   return true;
 }
