@@ -17,6 +17,7 @@ enum layers {
 enum planck_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
+  ,MY_COMM
   ,BACKLT
 };
 
@@ -113,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
 		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_G   , KC_D   , KC_N   , KC_M   , KC_V   , KC_LBRC, KC_RBRC, KC_BSLS,
 		T_NUMER, MALT_Y , MCTL_I , L_BKLSE, L_SYMA , KC_DOT , KC_C   , L_SYMS , L_BKLSR, MCTL_T , MALT_W , T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
+		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, KC_QUOT, MY_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
 		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
         /* BEAKLSH, custom SHIFT layer.
         * ,-----------------------------------------------------------------------------------------.
