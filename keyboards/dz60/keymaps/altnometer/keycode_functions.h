@@ -41,15 +41,15 @@ void mt_shift(keyrecord_t *record, uint16_t modifier, uint16_t modifier2, uint16
 {
   if (record->event.pressed) {
     key_timer = timer_read();
-    register_code(modifier);
+    register_mods(MOD_BIT(modifier));
     if (modifier2) {
-      register_code(modifier2);
+      register_mods(MOD_BIT(modifier2));
     }
   }
   else {
-    unregister_code(modifier);
+    unregister_mods(MOD_BIT(modifier));
     if (modifier2) {
-      unregister_code(modifier2);
+      unregister_mods(MOD_BIT(modifier2));
     }
     if (timer_elapsed(key_timer) < TAPPING_TERM) {
       shift_key(keycode);
