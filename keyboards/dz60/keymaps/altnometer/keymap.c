@@ -9,7 +9,6 @@ enum layers {
     ,_BEAKL
     ,NUMER
     ,SYMBL
-    ,QWERTY1  // for lower layers to access qwerty. probably should be removed.
     ,NAVIG
     ,MOUSE
 };
@@ -33,8 +32,6 @@ enum planck_keycodes {
 #define MS_ACCEL1 KC_MS_ACCEL1
 
 // Layer Switching.
-#define L_BS2 LT(QWERTY1, KC_2)
-#define L_BS6 LT(QWERTY1, KC_6)
 #define L_NAVSP LT(NAVIG, KC_SPC)
 
 #define L_SYM1 LT(SYMBL, KC_1)
@@ -133,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, KC_5   , KC_4   , TD_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, KC_LALT, MCTL_3 , L_BS2  , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , L_BS6  , MCTL_7 , KC_LALT, _______, _______,
+		_______, KC_LALT, MCTL_3 , KC_2   , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , KC_6   , MCTL_7 , KC_LALT, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
         /* SYMBL
@@ -153,13 +150,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DLR , HOME_RP, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_AMPR, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
-    // the layer is raised from numeric layer, it mimics the default _QWERTY.
-	[QWERTY1] = LAYOUT(
-		_______, KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
-		_______, KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		_______, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_QUOT, KC_ENT ,
-		_______, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		_______, _______, _______, KC_ENT , KC_ENT , KC_ENT , _______, _______, XXXXXXX, _______, XXXXXXX),
 	[NAVIG] = LAYOUT(
 		_______, _______, _______, _______, RESET  , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 		_______, _______, QWERTY , BEAKL  , _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, RGB_M_P, RGB_TOG,
