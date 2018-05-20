@@ -43,10 +43,12 @@ void equal(qk_tap_dance_state_t *state, void *user_data)
   }
   // tap: keycode
   else {
-    tap_key(KC_EQL);
     // double tap: golang := symbol
     if (state->count > 1) {
       shift_key(KC_SCLN);
+      tap_key(KC_EQL);
+    }
+    else {
       tap_key(KC_EQL);
     }
   }
