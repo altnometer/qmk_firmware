@@ -47,6 +47,7 @@ void equal(qk_tap_dance_state_t *state, void *user_data)
     if (state->count > 1) {
       shift_key(KC_SCLN);
       tap_key(KC_EQL);
+      tap_key(KC_SPC);
     }
     else {
       tap_key(KC_EQL);
