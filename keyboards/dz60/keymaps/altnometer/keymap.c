@@ -74,7 +74,7 @@ enum planck_keycodes {
 #define  KC_PGDN KC_PGDOWN
 
 #include "keycode_functions.h"
-#include "tapdance.h"
+/* #include "tapdance.h" */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         /* _QWERTY
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[NUMER] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_5   , KC_4   , TD_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
+		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
 		_______, KC_LALT, MCTL_3 , KC_2   , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , KC_6   , MCTL_7 , KC_LALT, _______, _______,
 		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
@@ -146,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , TD_TILD, KC_GT  , _______, _______, KC_LCBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
+		_______, _______, KC_LT  , KC_TILD, KC_GT  , _______, _______, KC_LCBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
 		_______, KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DLR , HOME_RP, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_AMPR, _______, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
