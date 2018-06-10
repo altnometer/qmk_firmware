@@ -19,7 +19,7 @@ enum planck_keycodes {
   ,MY_DOT
   ,MY_QUOT
   ,BACKLT
-  ,HOME_RP   // pseudo CTL_T(S(KC_0))
+  ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
 };
 
 // Mouse Declarations.
@@ -139,9 +139,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
         /* SYMBL
         * ,-----------------------------------------------------------------------------------------.
-        * |       |     |  <  |  =  |  >  |  ~  |  ^  |  {  |  *  |  }  |     |     |     |         |
+        * |       |     |  <  |  =  |  >  |  ~  |  ^  |  (  |  *  |  )  |     |     |     |         |
         * |-----------------------------------------------------------------------------------------+
-        * |         |  @  |  [  |  "  |  ]  |  #  |  ;  |  (  |  $  |  )  |  %  |     |             |
+        * |         |  @  |  [  |  "  |  ]  |  #  |  ;  |  {  |  $  |  }  |  %  |     |             |
         * |-----------------------------------------------------------------------------------------+
         * |           |     |  ?  |  `  |  !  |  &  |  +  |  -  |  |  |  :  |  _  |                 |
         * |-----------------------------------------------------------------------------------------+
@@ -150,8 +150,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         */
 	[SYMBL] = LAYOUT(
 		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DLR , HOME_RP, KC_PERC, _______, _______,
+		_______, _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______, _______, _______, _______,
+		_______, KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC, _______, _______,
 		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, KC_AMPR, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS, _______, _______,
 		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
 	[NAVIG] = LAYOUT(
@@ -359,9 +359,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case HOME_RP:
-      // CTL_T(S(KC_0))
-      mt_shift(record, KC_LCTL, 0, KC_0);
+    case HOMERCB:
+      // CTL_T(S(KC_RBRC))
+      mt_shift(record, KC_LCTL, 0, KC_RBRC);
       break;
   }
   return true;
