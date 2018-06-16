@@ -1,4 +1,4 @@
-#include "dz60.h"
+#include QMK_KEYBOARD_H
 
 #define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 #define _______ KC_TRNS
@@ -33,6 +33,7 @@ enum planck_keycodes {
 
 // Layer Switching.
 #define L_NAVSP LT(NAVIG, KC_SPC)
+#define L_NAVTB LT(NAVIG, KC_TAB)
 
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -40,6 +41,9 @@ enum planck_keycodes {
 #define L_SYMJ LT(SYMBL, KC_J)
 #define L_SYMS LT(SYMBL, KC_S)
 #define L_SYMA LT(SYMBL, KC_A)
+#define L_SYMSP LT(SYMBL, KC_SPC)
+
+#define L_NUMES LT(SYMBL, KC_ESC)
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_NUMER TT(NUMER)
@@ -49,7 +53,8 @@ enum planck_keycodes {
 #define  MSFT_D MT(MOD_LSFT, KC_D)
 #define  MSFT_K MT(MOD_RSFT, KC_K)
 #define  MSFT_E MT(MOD_LSFT, KC_E)
-#define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT as MY_QUOT is scripted to use it.
+#define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
+#define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
@@ -77,7 +82,7 @@ enum planck_keycodes {
 /* #include "tapdance.h" */
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* Qwerty
+/* _QWERTY
  * ,-----------------------------------------------------------------------------------.
  * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
@@ -89,55 +94,65 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
-  KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
-  KC_ESC,  MALT_A,  MCTL_S,  MSFT_D,  L_SYMF,  KC_G,    KC_H,    L_SYMJ,  MSFT_K,  MCTL_L,  MALT_SC, KC_QUOT,
-  KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-  BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+  KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
+  T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER,
+  KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX, XXXXXXX,
+),
+/* _BEAKL (beakl10)
+ * ,-----------------------------------------------------------------------------------.
+ * |  Q   |  H   |  O   |  U   |  X   |      |      |   G  |   D  |   N  |   M  |   V  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  Y   |  I   |  E   |  A   | .  # | FN3  |      |   C  |   S  |   R  |   T  |   W  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |  J   | /  ? | '  ` | ,  ! |  Z   |      |      |   B  |   P  |   L  |   F  |   K  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * | Alt  | Ctrl | GUI  | Tab  | Spc  |  Spc | BkSp | Entr |  Esc | Down |  Up  |Right |
+ * `-----------------------------------------------------------------------------------'
+ *                         ^      ^                    ^      ^
+ *                        Nav    Symb                 Shft    Num
+ */
+ [_BEAKL] = LAYOUT_ortho_4x12(
+  KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
+  MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
+  KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, T_MOUSE, XXXXXXX, XXXXXXX,
+),
+/* NUMER
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  5   |  =   |  4   |      |      |      |      |   8  |   *  |   9  |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |  3   |  2   |  1   | .  # |      |      |   ;  |   0  |   6  |   7  |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      | /  ? | '  ` | ,  ! |      |      |      |   +  |   -  |   \  |   :  |   _  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [NUMER] = LAYOUT_ortho_4x12(
+  _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_D   , KC_N   , KC_M   , KC_V   ,
+  KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
+  KC_J   , KC_SLSH, MY_QUOT, MY_COMM, _______, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, KC_UNDS,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+),
+/* SYMBL
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  5   |  =   |  4   |      |      |      |      |   8  |   *  |   9  |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      |  3   |  2   |  1   | .  # |      |      |   ;  |   0  |   6  |   7  |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      | /  ? | '  ` | ,  ! |      |      |      |   +  |   -  |   \  |   :  |   _  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [SYMBL] = LAYOUT_ortho_4x12(
+  _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_D   , KC_N   , KC_M   , KC_V   ,
+  KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
+  KC_J   , KC_SLSH, MY_QUOT, MY_COMM, _______, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, KC_UNDS,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
 ),
 
-	[_QWERTY] = LAYOUT(
-		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
-		KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC, KC_RBRC, KC_BSLS,
-		T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER, T_NUMER,
-		KC_LSFT, XXXXXXX, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT, XXXXXXX,
-		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
-        /* BEAKL10
-        * ,-----------------------------------------------------------------------------------------.
-        * | Esc |  1  |  2  |  3  |  4  |  5  |  6  |  7  |  8  |  9  |  0  |  -  |  =  |   Bspc    |
-        * |-----------------------------------------------------------------------------------------+
-        * | Tab   |  Q  |  H  |  O  |  U  |  X  |  G  |  D  |  N  |  M  |  V  |  [  |  ]  |    \    |
-        * |-----------------------------------------------------------------------------------------+
-        * |  FN2    |  Y  |  I  |  E  |  A  |  .  |  C  |  S  |  R  |  T  |  W  | NUM |    Enter    |
-        * |-----------------------------------------------------------------------------------------+
-        * | Shift     |  J  |  /  |  '  |  ,  |  Z  |  B  |  P  |  L  |  F  |  K  |     Shift       |
-        * |-----------------------------------------------------------------------------------------+
-        * |  Alt  | Ctrl |  GUI |             Space                 | Ctrl | Alt  | FN3 |     |     |
-        * `-----------------------------------------------------------------------------------------'
-        */
-	[_BEAKL] = LAYOUT(
-		KC_ESC , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_MINS, KC_EQL , XXXXXXX, KC_BSPC,
-		KC_TAB , KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , KC_G   , KC_D   , KC_N   , KC_M   , KC_V   , KC_LBRC, KC_RBRC, KC_BSLS,
-		T_NUMER, MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W , T_NUMER, KC_ENT ,
-		KC_LSFT, XXXXXXX, KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , KC_B   , KC_P   , KC_L   , KC_F   , KC_K   , KC_RSFT, XXXXXXX,
-		KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX),
-
-        /* NUMER
-        * ,-----------------------------------------------------------------------------------------.
-        * |       |     |  5  |  4  |  =  |     |     |  *  |  8  |  9  |     |     |     |         |
-        * |-----------------------------------------------------------------------------------------+
-        * |         |     |  3  |  2  |  1  |  .  |  ;  |  0  |  6  |  7  |     |     |             |
-        * |-----------------------------------------------------------------------------------------+
-        * |           |     |  /  |  '  |  ,  |     |  +  |  -  |  \  |  :  |     |                 |
-        * |-----------------------------------------------------------------------------------------+
-        * |       |      |      |              Spc                  |      |      |     |     |     |
-        * `-----------------------------------------------------------------------------------------'
-        */
-	[NUMER] = LAYOUT(
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_5   , KC_4   , KC_EQL , _______, _______, KC_ASTR, KC_8   , KC_9   , _______, _______, _______, _______,
-		_______, KC_LALT, MCTL_3 , KC_2   , L_SYM1 , KC_DOT , KC_SCLN, L_SYM0 , KC_6   , MCTL_7 , KC_LALT, _______, _______,
-		_______, XXXXXXX, _______, KC_SLSH, KC_QUOT, KC_COMM, _______, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, _______, _______, _______,
-		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
         /* SYMBL
         * ,-----------------------------------------------------------------------------------------.
         * |       |     |  <  |  ~  |  >  |     |     |  {  |  ^  |  }  |     |     |     |         |
