@@ -43,7 +43,7 @@ enum planck_keycodes {
 #define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSP LT(SYMBL, KC_SPC)
 
-#define L_NUMES LT(SYMBL, KC_ESC)
+#define L_NUMES LT(NUMER, KC_ESC)
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
