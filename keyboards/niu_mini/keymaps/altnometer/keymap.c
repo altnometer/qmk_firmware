@@ -268,14 +268,14 @@ uint32_t layer_state_set_user(uint32_t state) {
     /*     rgblight_enable(); */
     /*     rgblight_setrgb (0x00,  0x00, 0xFF); */
     /*     break; */
-    case _BEAKL:
-        rgblight_enable();
-        rgblight_setrgb (0xFF,  0x00, 0x00);
-        break;
-    case NUMER:
-        rgblight_enable();
-        rgblight_setrgb (0x00,  0xFF, 0x00);
-        break;
+    /* case _BEAKL: */
+    /*     rgblight_enable(); */
+    /*     rgblight_setrgb (0xFF,  0x00, 0x00); */
+    /*     break; */
+    /* case NUMER: */
+    /*     rgblight_enable(); */
+    /*     rgblight_setrgb (0x00,  0xFF, 0x00); */
+    /*     break; */
     case MOUSE:
         rgblight_enable();
         rgblight_setrgb (0x7A,  0x00, 0xFF);
