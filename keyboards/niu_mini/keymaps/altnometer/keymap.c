@@ -46,7 +46,6 @@ enum planck_keycodes {
 #define L_NUMES LT(SYMBL, KC_ESC)
 
 /* #define OS_NUM OSL(NUMER) */
-#define T_NUMER TT(NUMER)
 #define T_MOUSE TT(MOUSE)
 
 // Modifier Switching.
@@ -90,14 +89,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |  Spc | Spc  |Raise | Left | Down |  Up  |Right |
+ * | Alt  | Ctrl | GUI  | Tab  | Spc  |  Spc | BkSp | Entr |  Esc | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
+ *                         ^      ^                    ^      ^
+ *                        Nav    Symb                 Shft    Num
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
   KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
-  T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER,
-  KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX, XXXXXXX
+  KC_ESC , MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_DQT ,
+  KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* _BEAKL (beakl10)
  * ,-----------------------------------------------------------------------------------.
@@ -116,8 +117,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, T_MOUSE, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
+  /* KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, T_MOUSE, XXXXXXX, XXXXXXX */
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
  * |      |  5   |  =   |  4   |      |      |      |      |   8  |   *  |   9  |      |
@@ -154,7 +156,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* NAVIG
  * ,-----------------------------------------------------------------------------------.
- * |      |QWERTY| BEAKL|      |      |      |      |      |      | Home |  End |      |
+ * | RGB  |QWERTY| BEAKL|      |      |      |      |      |      | Home |  End |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * | Alt  | Ctrl | Shft |      |      |      |      | Left | Down |  Up  | Rght |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -164,7 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
  [NAVIG] = LAYOUT_ortho_4x12(
-  XXXXXXX, QWERTY , BEAKL  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
+  RGB_TOG, QWERTY , BEAKL  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
   KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
