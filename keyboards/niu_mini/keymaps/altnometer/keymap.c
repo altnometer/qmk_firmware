@@ -19,7 +19,7 @@ enum planck_keycodes {
   ,MY_DOT
   ,MY_QUOT
   ,BACKLT
-  ,HOME_RP   // pseudo CTL_T(S(KC_0))
+  ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
 };
 
 // Mouse Declarations.
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
   T_NUMER, MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, T_NUMER,
   KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX, XXXXXXX,
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVSP, L_NAVSP, L_NAVSP, OS_LGUI, T_MOUSE, XXXXXXX, T_MOUSE, XXXXXXX, XXXXXXX
 ),
 /* _BEAKL (beakl10)
  * ,-----------------------------------------------------------------------------------.
@@ -116,7 +116,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, T_MOUSE, XXXXXXX, XXXXXXX,
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, MSFT_EN, L_NUMES, T_MOUSE, XXXXXXX, XXXXXXX
 ),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
@@ -133,56 +133,49 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, _______, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
- * |      |  5   |  =   |  4   |      |      |      |      |   8  |   *  |   9  |      |
+ * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   (  |   *  |   )  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |  3   |  2   |  1   | .  # |      |      |   ;  |   0  |   6  |   7  |      |
+ * |  @   |  [   |  "   |  ]   |    # |      |      |   ;  |   {  |   $  |   }  |   %  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      | /  ? | '  ` | ,  ! |      |      |      |   +  |   -  |   \  |   :  |   _  |
+ * |      |    ? |    ` |    ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
  [SYMBL] = LAYOUT_ortho_4x12(
-  _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_D   , KC_N   , KC_M   , KC_V   ,
-  KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
-  KC_J   , KC_SLSH, MY_QUOT, MY_COMM, _______, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
+  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
+  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
+  _______, KC_QUES, KC_GRV , KC_EXLM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
+/* NAVIG
+ * ,-----------------------------------------------------------------------------------.
+ * |      |QWERTY| BEAKL|      |      |      |      |      |      | Home |  End |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * | Alt  | Ctrl | Shft |      |      |      |      | Left | Down |  Up  | Rght |      |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |      |      | Caps |      |      |      |      |      | PGUP | PGDN |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [NAVIG] = LAYOUT_ortho_4x12(
+  XXXXXXX, QWERTY , BEAKL  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
+  KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+)
 
-        /* SYMBL
-        * ,-----------------------------------------------------------------------------------------.
-        * |       |     |  <  |  ~  |  >  |     |     |  {  |  ^  |  }  |     |     |     |         |
-        * |-----------------------------------------------------------------------------------------+
-        * |         |  @  |  [  |  "  |  ]  |  #  |     |  (  |  $  |  )  |  %  |     |             |
-        * |-----------------------------------------------------------------------------------------+
-        * |           |     |  ?  |  `  |  !  |     |     |  _  |  |  |  &  |     |                 |
-        * |-----------------------------------------------------------------------------------------+
-        * |       |      |      |              Spc                  |      |      |     |     |     |
-        * `-----------------------------------------------------------------------------------------'
-        */
-	[SYMBL] = LAYOUT(
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, KC_LT  , KC_TILD, KC_GT  , _______, _______, KC_LCBR, KC_CIRC, KC_RCBR, _______, _______, _______, _______,
-		_______, KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, KC_SCLN, KC_LPRN, KC_DLR , HOME_RP, KC_PERC, _______, _______,
-		_______, XXXXXXX, _______, KC_QUES, KC_GRV , KC_EXLM, _______, KC_PLUS, KC_UNDS, KC_PIPE, KC_AMPR, _______, _______, _______,
-		_______, _______, _______, L_NAVSP, L_NAVSP, L_NAVSP, _______, _______, _______, _______, _______),
-	[NAVIG] = LAYOUT(
-		_______, _______, _______, _______, RESET  , _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, QWERTY , BEAKL  , _______, _______, _______, _______, KC_HOME, KC_END , _______, _______, RGB_M_P, RGB_TOG,
-		_______, KC_LALT, KC_LCTL, KC_LSFT, _______, _______, KC_LEFT, KC_DOWN, KC_UP  , KC_RGHT, _______, _______, _______,
-		_______, XXXXXXX, _______, _______, KC_CAPS, KC_ENT , KC_BSPC, KC_BSPC, KC_ENT , KC_PGUP, KC_PGDN, _______, _______, _______,
-		_______, _______, _______, KC_SPC , KC_SPC , KC_SPC , _______, _______, _______, _______, _______),
-
-	[MOUSE] = LAYOUT(
-		_______, M(1)   , M(2)   , M(3)   , M(4)   , M(5)   , M(6)   , M(7)   , M(8)   , M(9)   , M(10)   , M(11) , M(12)  , _______, _______,
-		_______, _______, MS_UP  , MS_BTN1, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, MS_LEFT, MS_DOWN, MS_RGHT, MS_BTN2, _______, _______, KC_ACL2, KC_ACL1, KC_ACL0, _______, _______, _______,
-		_______, XXXXXXX, _______, _______, T_MOUSE, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-		_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______),
+	/* [MOUSE] = LAYOUT( */
+	/* 	_______, M(1)   , M(2)   , M(3)   , M(4)   , M(5)   , M(6)   , M(7)   , M(8)   , M(9)   , M(10)   , M(11) , M(12)  , _______, _______, */
+	/* 	_______, _______, MS_UP  , MS_BTN1, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, */
+	/* 	_______, MS_LEFT, MS_DOWN, MS_RGHT, MS_BTN2, _______, _______, KC_ACL2, KC_ACL1, KC_ACL0, _______, _______, _______, */
+	/* 	_______, XXXXXXX, _______, _______, T_MOUSE, _______, _______, _______, _______, _______, _______, _______, _______, _______, */
+	/* 	_______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______), */
 };
 
 enum function_id {
@@ -375,9 +368,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case HOME_RP:
-      // CTL_T(S(KC_0))
-      mt_shift(record, KC_LCTL, 0, KC_0);
+    case HOMERCB:
+      // CTL_T(S(KC_RBRC))
+      mt_shift(record, KC_LCTL, 0, KC_RBRC);
       break;
   }
   return true;
