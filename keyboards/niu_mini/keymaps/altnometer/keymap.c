@@ -109,16 +109,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  J   | /  ? | '  ` | ,  ! |  Z   |      |      |   B  |   P  |   L  |   F  |   K  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Alt  | Ctrl | GUI  | Tab  | Spc  |  Spc | BkSp | Entr |  Esc | Down |  Up  |Right |
+ * | Alt  | Ctrl | GUI  | GUI  | Spc  | Tab  | BkSp | Entr |  Esc | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
- *                         ^      ^                    ^      ^
- *                        Nav    Symb                 Shft    Num
+ *                                ^      ^      ^      ^      ^
+ *                               Symb   Nav    Shft   Num    Shft
  */
  [_BEAKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVTB, MSFT_BS, L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
