@@ -44,7 +44,8 @@ enum planck_keycodes {
 #define L_SYMSP LT(SYMBL, KC_SPC)
 
 #define L_NUMEN LT(NUMER, KC_ENT)
-#define  MSFT_ES  MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
+#define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
+#define  MSFT_BS MT(MOD_LSFT, KC_BSPC)  // LSFT for keys implementing custom shift values.
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
