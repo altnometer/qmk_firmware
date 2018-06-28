@@ -43,9 +43,7 @@ enum planck_keycodes {
 #define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSP LT(SYMBL, KC_SPC)
 
-#define L_NUMEN LT(NUMER, KC_ENT)
-#define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
-#define  MSFT_BS MT(MOD_LSFT, KC_BSPC)  // LSFT for keys implementing custom shift values.
+#define L_NUMBS LT(NUMER, KC_BSPC)
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
@@ -56,6 +54,7 @@ enum planck_keycodes {
 #define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
+#define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
@@ -100,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
   KC_ESC , MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_DQT ,
   KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, L_NUMBS, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* _BEAKL (beakl10)
  * ,-----------------------------------------------------------------------------------.
@@ -119,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVTB, MSFT_BS, L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVTB, L_NUMBS, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
@@ -136,7 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_8   , KC_ASTR, KC_9   , KC_V   ,
   KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, _______, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_BSLS, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, KC_BSPC, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, KC_BSPC, KC_ENT , _______, _______, _______, _______
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -153,7 +152,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
   KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
   _______, KC_QUES, KC_GRV , KC_EXLM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, KC_BSPC, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, KC_BSPC, KC_SPC , _______, _______, _______, _______
 ),
 /* NAVIG
  * ,-----------------------------------------------------------------------------------.
@@ -170,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   RGB_TOG, QWERTY , BEAKL  , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
   KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MSFT_BS, KC_ENT , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSFT, MSFT_EN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
 	/* [MOUSE] = LAYOUT( */
