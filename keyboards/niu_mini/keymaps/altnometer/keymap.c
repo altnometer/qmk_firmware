@@ -33,7 +33,7 @@ enum planck_keycodes {
 
 // Layer Switching.
 #define L_NAVSP LT(NAVIG, KC_SPC)
-#define L_NAVTB LT(NAVIG, KC_TAB)
+#define L_NAVBS LT(NAVIG, KC_BSPC)
 
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -43,7 +43,7 @@ enum planck_keycodes {
 #define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSP LT(SYMBL, KC_SPC)
 
-#define L_NUMBS LT(NUMER, KC_BSPC)
+#define L_NUMTB LT(NUMER, KC_TAB)
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
@@ -99,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
   KC_ESC , MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_DQT ,
   KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVTB, L_SYMSP, KC_SPC , KC_BSPC, L_NUMBS, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, L_NAVBS, L_SYMSP, KC_SPC , KC_BSPC, L_NUMTB, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* _BEAKL (beakl10)
  * ,-----------------------------------------------------------------------------------.
@@ -118,7 +118,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , L_SYMA , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , L_SYMS , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVTB, L_NUMBS, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, L_NUMTB, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
