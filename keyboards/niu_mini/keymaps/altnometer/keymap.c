@@ -54,6 +54,7 @@ enum planck_keycodes {
 #define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
+#define  MSFT_SP  MT(MOD_LSFT, KC_SPC)  // LSFT for keys implementing custom shift values.
 #define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
 
 #define  MALT_A MT(MOD_LALT, KC_A)
@@ -141,18 +142,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   (  |   *  |   )  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  @   |  [   |  "   |  ]   |    # |      |      |   ;  |   {  |   $  |   }  |   %  |
+ * |  @   |  [   |  "   |  ]   | .  # |      |      |   ;  |   {  |   $  |   }  |   %  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  \   | /    | '    | ,    |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
+ * |  \   | /  ? | '  ` | ,  ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
  [SYMBL] = LAYOUT_ortho_4x12(
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
-  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, KC_HASH, XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
-  KC_BSLS, KC_SLSH, KC_QUOT, KC_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, KC_BSPC, KC_SPC , _______, _______, _______, _______
+  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
+  KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+  _______, _______, _______, _______, _______, _______, KC_BSPC, MSFT_SP, _______, _______, _______, _______
 ),
 /* NAVIG
  * ,-----------------------------------------------------------------------------------.
