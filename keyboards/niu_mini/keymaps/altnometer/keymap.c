@@ -9,6 +9,7 @@ enum layers {
     ,_BEAKL
     ,NUMER
     ,SYMBL
+    ,BAREBKL
     ,NAVIG
     ,MOUSE
 };
@@ -45,6 +46,8 @@ enum planck_keycodes {
 
 #define L_NUMTB LT(NUMER, KC_TAB)
 
+#define  L_BKLSP  LT(BAREBKL, KC_SPC)
+
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
 
@@ -54,7 +57,6 @@ enum planck_keycodes {
 #define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
-#define  MSFT_SP  MT(MOD_LSFT, KC_SPC)  // LSFT for keys implementing custom shift values.
 #define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
 
 #define  MALT_A MT(MOD_LALT, KC_A)
@@ -153,7 +155,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
   KC_AT  , HOME_LB, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, KC_BSPC, MSFT_SP, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, KC_BSPC, L_BKLSP, _______, _______, _______, _______
+),
+  [BAREBKL] = LAYOUT_ortho_4x12(
+  KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
+  KC_Y   , KC_I   , KC_E   , KC_A   , KC_HASH, XXXXXXX, XXXXXXX, KC_C   , KC_S   , KC_R   , KC_T   , KC_W   ,
+  KC_J   , KC_SLSH, KC_GRV , KC_EXLM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* NAVIG
  * ,-----------------------------------------------------------------------------------.
@@ -359,13 +367,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         shift_on = get_mods()&SHIFT_MODS;
         if (shift_on) {
-          register_code(KC_1);  // for shifted KC_EXCL
+          register_code(KC_1);  // for shifted KC_EXLM
         } else {
           register_code(KC_COMM);
         }
       } else {
         if (shift_on) {
-          unregister_code(KC_1);  // for shifted KC_EXCL
+          unregister_code(KC_1);  // for shifted KC_EXLM
         } else {
           unregister_code(KC_COMM);
         }
