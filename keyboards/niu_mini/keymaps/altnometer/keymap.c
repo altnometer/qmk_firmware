@@ -7,8 +7,8 @@
 enum layers {
      _QWERTY = 0
     ,_BEAKL
-    ,NUMER
     ,SYMBL
+    ,NUMER
     ,BAREBKL
     ,NAVIG
     ,MOUSE
@@ -47,6 +47,7 @@ enum planck_keycodes {
 #define L_NUMTB LT(NUMER, KC_TAB)
 
 #define  L_BKLSP  LT(BAREBKL, KC_SPC)
+#define  L_NMBSP  LT(NUMER, KC_BSPC)
 
 /* #define OS_NUM OSL(NUMER) */
 #define T_MOUSE TT(MOUSE)
@@ -123,6 +124,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
   KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, L_NUMTB, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
+/* SYMBL
+ * ,-----------------------------------------------------------------------------------.
+ * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   (  |   *  |   )  |      |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  @   |  [   |  "   |  ]   | .  # |      |      |   ;  |   {  |   $  |   }  |   %  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |  \   | /  ? | '  ` | ,  ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [SYMBL] = LAYOUT_ortho_4x12(
+  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
+  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
+  KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+  _______, _______, _______, _______, _______, _______, L_NMBSP, L_BKLSP, _______, _______, _______, _______
+),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
  * |      |  5   |  =   |  4   |      |      |      |      |   8  |   *  |   9  |      |
@@ -139,23 +157,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
-),
-/* SYMBL
- * ,-----------------------------------------------------------------------------------.
- * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   (  |   *  |   )  |      |
- * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  @   |  [   |  "   |  ]   | .  # |      |      |   ;  |   {  |   $  |   }  |   %  |
- * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  \   | /  ? | '  ` | ,  ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
- * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
- * `-----------------------------------------------------------------------------------'
- */
- [SYMBL] = LAYOUT_ortho_4x12(
-  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
-  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
-  KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, KC_BSPC, L_BKLSP, _______, _______, _______, _______
 ),
   [BAREBKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
