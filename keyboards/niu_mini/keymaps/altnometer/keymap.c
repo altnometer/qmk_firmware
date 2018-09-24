@@ -38,8 +38,6 @@ enum planck_keycodes {
 
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
-#define L_SYMF LT(SYMBL, KC_F)
-#define L_SYMJ LT(SYMBL, KC_J)
 #define L_SYMS LT(SYMBL, KC_S)
 #define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSP LT(SYMBL, KC_SPC)
@@ -53,8 +51,6 @@ enum planck_keycodes {
 #define T_MOUSE TT(MOUSE)
 
 // Modifier Switching.
-#define  MSFT_D MT(MOD_LSFT, KC_D)
-#define  MSFT_K MT(MOD_RSFT, KC_K)
 #define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
@@ -88,22 +84,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* _QWERTY
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |  Q   |   W  |   E  |   R  |   T  |      |      |   Y  |   U  |   I  |   O  |   P  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |  A   |   S  |   D  |   F  |   G  |      |      |   H  |   J  |   K  |   L  |   ;  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |  Z   |   X  |   C  |   V  |   B  |      |      |   N  |   M  |   ,  |   .  |   /  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Alt  | Ctrl | GUI  | Tab  | Spc  |  Spc | BkSp | Entr |  Esc | Down |  Up  |Right |
+ * | Alt  | Ctrl | GUI  | GUI  | Spc  | Tab  | BkSp | Entr |  Esc | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
- *                         ^      ^                    ^      ^
- *                        Nav    Symb                 Shft    Num
+ *                                ^      ^      ^      ^      ^
+ *                               Symb   Nav    Shft   Num    Shft
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
-  KC_TAB , KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   , KC_LBRC,
-  KC_ESC , MALT_A , MCTL_S , MSFT_D , L_SYMF , KC_G   , KC_H   , L_SYMJ , MSFT_K , MCTL_L , MALT_SC, KC_DQT ,
-  KC_LSFT, KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-  KC_LALT, KC_LCTL, OS_LGUI, L_NAVBS, L_SYMSP, KC_SPC , KC_BSPC, L_NUMTB, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , XXXXXXX, XXXXXXX, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   ,
+  MALT_A , MCTL_S , KC_D   , KC_F   , KC_G   , XXXXXXX, XXXXXXX, KC_H   , MSFT_K , KC_K   , MCTL_L , MALT_SC,
+  KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , XXXXXXX, XXXXXXX, KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH,
+  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, L_NUMTB, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* _BEAKL (beakl10)
  * ,-----------------------------------------------------------------------------------.
