@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_QWERTY] = LAYOUT_ortho_4x12(
   KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   , XXXXXXX, XXXXXXX, KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   ,
-  MALT_A , MCTL_S , KC_D   , KC_F   , KC_G   , XXXXXXX, XXXXXXX, KC_H   , MSFT_K , KC_K   , MCTL_L , MALT_SC,
+  MALT_A , MCTL_S , KC_D   , KC_F   , KC_G   , XXXXXXX, XXXXXXX, KC_H   , KC_J   , KC_K   , MCTL_L , MALT_SC,
   KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   , XXXXXXX, XXXXXXX, KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH,
   KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, L_NUMTB, MSFT_EN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
