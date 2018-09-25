@@ -10,6 +10,7 @@ enum layers {
     ,SYMBL
     ,NUMER
     ,BAREBKL
+    ,BARESBL
     ,NAVIG
     ,MOUSE
 };
@@ -41,6 +42,7 @@ enum planck_keycodes {
 #define L_SYMS LT(SYMBL, KC_S)
 #define L_SYMA LT(SYMBL, KC_A)
 #define L_SYMSP LT(SYMBL, KC_SPC)
+#define L_BSMSP LT(BARESBL, KC_SPC)
 
 #define L_NUMTB LT(NUMER, KC_TAB)
 
@@ -152,12 +154,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_8   , KC_ASTR, KC_9   , KC_V   ,
   KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, L_BSMSP, _______, _______, _______, _______, _______, _______, _______
 ),
   [BAREBKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_I   , KC_E   , KC_A   , KC_HASH, XXXXXXX, XXXXXXX, KC_C   , KC_S   , KC_R   , KC_T   , KC_W   ,
   KC_J   , KC_SLSH, KC_GRV , KC_EXLM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+),
+ [BARESBL] = LAYOUT_ortho_4x12(
+  XXXXXXX, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, XXXXXXX,
+  KC_AT  , KC_LBRC, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , KC_RCBR, KC_PERC,
+  KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* NAVIG
