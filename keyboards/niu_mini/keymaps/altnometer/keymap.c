@@ -45,6 +45,7 @@ enum planck_keycodes {
 #define L_BSMSP LT(BARESBL, KC_SPC)
 
 #define L_NUMTB LT(NUMER, KC_TAB)
+#define L_NUMEN LT(NUMER, KC_ENT)
 
 #define  L_BKLSP  LT(BAREBKL, KC_SPC)
 #define  L_NMBSP  LT(NUMER, KC_BSPC)
@@ -120,7 +121,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, L_NUMTB, KC_ENT , MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, KC_TAB , L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
