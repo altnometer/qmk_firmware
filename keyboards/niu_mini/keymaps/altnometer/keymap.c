@@ -12,6 +12,7 @@ enum layers {
     ,BAREBKL
     ,BARESBL
     ,NAVIG
+    ,I3WM
     ,MOUSE
 };
 enum planck_keycodes {
@@ -58,6 +59,8 @@ enum planck_keycodes {
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
 #define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
+#define  MSFT_2 MT(MOD_LSFT, KC_2)
+#define  MSFT_UP MT(MOD_LSFT, KC_UP)
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
@@ -76,6 +79,7 @@ enum planck_keycodes {
 
 // One shot modifiers.
 #define OS_LGUI OSM(MOD_LGUI)
+#define LM_I3WM LM(I3WM, MOD_LGUI)
 
 // Key code abbreviations.
 #define  KC_RGHT KC_RIGHT
@@ -119,9 +123,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [_BEAKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
-  MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , XXXXXXX, XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
+  MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , KC_DEL , XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, OS_LGUI, OS_LGUI, L_SYMSP, L_NAVBS, KC_TAB , L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, OS_LGUI, LM_I3WM, L_SYMSP, L_NAVBS, KC_TAB , L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -185,6 +189,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_LALT, KC_LCTL, KC_LSFT, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_LSFT, MSFT_EN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+),
+
+/* I3WM
+ * ,-----------------------------------------------------------------------------------.
+ * |  q   |  h   |  o   |  4   |  x   |      |      |   g  |   d  |   n  |   m  |   v  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  y   |  3   |  2   |  1   |  .   |      |      | Left | Down |  Up  | Rght |   w  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |  j   |  /   |  '   |  ,   |  z   |      |      |   b  |   p  |   l  |   f  |   k  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | Entr |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [I3WM] = LAYOUT_ortho_4x12(
+  KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
+  KC_Y   , KC_3   , MSFT_2 , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_W  ,
+  KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MSFT_EN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
 	/* [MOUSE] = LAYOUT( */
