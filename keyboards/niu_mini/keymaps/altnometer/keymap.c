@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
   [BAREBKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
-  KC_Y   , KC_I   , KC_E   , KC_A   , KC_HASH, XXXXXXX, XXXXXXX, KC_C   , KC_S   , KC_R   , KC_T   , KC_W   ,
+  KC_Y   , KC_I   , MSFT_E , KC_A   , KC_HASH, XXXXXXX, XXXXXXX, KC_C   , KC_S   , MSFT_R , KC_T   , KC_W   ,
   KC_J   , KC_QUES, KC_GRV , KC_EXLM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
