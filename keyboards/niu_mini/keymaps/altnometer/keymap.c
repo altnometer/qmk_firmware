@@ -24,6 +24,7 @@ enum planck_keycodes {
   ,BACKLT
   ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
   ,I3GUIES
+  ,I3GUINS
 };
 
 // Mouse Declarations.
@@ -127,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , KC_DEL , XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, LM_I3WM, L_SYMSP, L_NAVBS, L_NAVTB , L_NUMEN, I3GUIES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, I3GUINS, L_SYMSP, L_NAVBS, L_NAVTB , L_NUMEN, I3GUIES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -208,7 +209,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_3   , MSFT_2 , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_W  ,
   KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
+  XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
 	/* [MOUSE] = LAYOUT( */
@@ -415,6 +416,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     case I3GUIES:
         lmt(record, I3WM, KC_LGUI, KC_ESC);
+        break;
+    case I3GUINS:
+        lmt(record, I3WM, KC_LGUI, KC_INSERT);
         break;
   }
   return true;  // let QMK send press/release events for the key
