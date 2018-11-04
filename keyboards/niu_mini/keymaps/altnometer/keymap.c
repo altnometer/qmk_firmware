@@ -23,6 +23,7 @@ enum planck_keycodes {
   ,MY_QUOT
   ,BACKLT
   ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
+  ,I3GUIES
 };
 
 // Mouse Declarations.
@@ -37,6 +38,7 @@ enum planck_keycodes {
 // Layer Switching.
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_NAVBS LT(NAVIG, KC_BSPC)
+#define L_NAVTB LT(NAVIG, KC_TAB)
 
 #define L_SYM1 LT(SYMBL, KC_1)
 #define L_SYM0 LT(SYMBL, KC_0)
@@ -125,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , KC_DEL , XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, LM_I3WM, L_SYMSP, L_NAVBS, KC_TAB , L_NUMEN, MSFT_ES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, LM_I3WM, L_SYMSP, L_NAVBS, L_NAVTB , L_NUMEN, I3GUIES, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -199,14 +201,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  j   |  /   |  '   |  ,   |  z   |      |      |   b  |   p  |   l  |   f  |   k  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      | Entr |      |      |      |      |
+ * |  TG  |      |      |      |      |      |      | Entr |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
  [I3WM] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_3   , MSFT_2 , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_W  ,
   KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, MSFT_EN, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
 	/* [MOUSE] = LAYOUT( */
@@ -336,13 +338,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
-      return false;
+      return false; // skip all further processing of this key
       break;
     case BEAKL:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_BEAKL);
       }
-      return false;
+      return false; // skip all further processing of this key
       break;
     case BACKLT:
       if (record->event.pressed) {
@@ -355,7 +357,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         unregister_code(KC_RSFT);
         PORTE |= (1<<6);
       }
-      return false;
+      return false; // skip all further processing of this key
       break;
     case MY_QUOT:
       if (record->event.pressed) {
@@ -411,6 +413,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // CTL_T(S(KC_RBRC))
       mt_shift(record, KC_LCTL, 0, KC_RBRC);
       break;
+    case I3GUIES:
+        lmt(record, I3WM, KC_LGUI, KC_ESC);
+        break;
   }
-  return true;
+  return true;  // let QMK send press/release events for the key
 }
