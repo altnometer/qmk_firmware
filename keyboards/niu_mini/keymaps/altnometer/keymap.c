@@ -328,11 +328,9 @@ uint32_t layer_state_set_user(uint32_t state) {
   return state;
 }
 
-/* uint32_t layer_state_set_user(uint32_t state) { */
-/*   return update_tri_layer_state(state, NUMER, SYMBL, _ADJUST); */
-/* } */
 #define SHIFT_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 static uint8_t shift_on;  // shift and comma pressed
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case QWERTY:
