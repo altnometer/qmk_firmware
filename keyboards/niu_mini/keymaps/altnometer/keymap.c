@@ -23,7 +23,6 @@ enum planck_keycodes {
   ,MY_QUOT
   ,BACKLT
   ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
-  ,I3GUIES
   ,I3GUINS
 };
 
@@ -128,7 +127,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , KC_DEL , XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, I3GUINS, L_SYMSP, L_NAVBS, L_NAVTB , L_NUMEN, I3GUIES, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, I3GUINS, L_SYMSP, L_NAVBS, L_NAVTB, L_NUMEN, KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -412,9 +411,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // CTL_T(S(KC_RBRC))
       mt_shift(record, KC_LCTL, 0, KC_RBRC);
       break;
-    case I3GUIES:
-        lmt(record, I3WM, KC_LGUI, KC_ESC);
-        break;
     case I3GUINS:
         lmt(record, I3WM, KC_LGUI, KC_INSERT);
         break;
