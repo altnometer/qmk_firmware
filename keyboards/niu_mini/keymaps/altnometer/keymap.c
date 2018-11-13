@@ -13,6 +13,7 @@ enum layers {
     ,BARESBL
     ,NAVIG
     ,I3WM
+    ,TMUX
     ,MOUSE
 };
 enum planck_keycodes {
@@ -23,7 +24,8 @@ enum planck_keycodes {
   ,MY_QUOT
   ,BACKLT
   ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
-  ,I3GUINS
+  ,I3_ESC
+  ,TMX_INS
 };
 
 // Mouse Declarations.
@@ -127,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   MALT_Y , MCTL_I , MSFT_E , KC_A   , MY_DOT , KC_DEL , XXXXXXX, KC_C   , KC_S   , MSFT_R , MCTL_T , MALT_W ,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, I3GUINS, L_SYMSP, L_NAVBS, L_NAVTB, L_NUMEN, KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, I3_ESC , L_SYMSP, L_NAVBS, L_NAVTB, L_NUMEN, TMX_INS, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -207,6 +209,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [I3WM] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_3   , MSFT_2 , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_W  ,
+  KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
+  XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
+),
+
+/* TMUX contains common key bindings for TMUX commands
+ * ,-----------------------------------------------------------------------------------.
+ * |  q   |  h   |  o   |  4   |  x   |      |      |   g  |   d  |   n  |   m  |   v  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |  y   |  3   |  "   |  1   |  .   |      |      | Left | Down |  Up  | Rght |   w  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |  j   |  /   |  '   |  ,   |  z   |      |      |   b  |   p  |   l  |   f  |   k  |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      | Entr |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [TMUX] = LAYOUT_ortho_4x12(
+  KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
+  KC_Y   , KC_3   , KC_DQT , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_PERC  ,
   KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
   XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
 )
@@ -411,8 +431,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // CTL_T(S(KC_RBRC))
       mt_shift(record, KC_LCTL, 0, KC_RBRC);
       break;
-    case I3GUINS:
-        lmt(record, I3WM, KC_LGUI, KC_INSERT);
+    case I3_ESC:
+        lmt(record, I3WM, KC_LGUI, KC_ESC);
+        break;
+    case TMX_INS:
+        lmt(record, TMUX, KC_INSERT, KC_INSERT);
         break;
   }
   return true;  // let QMK send press/release events for the key
