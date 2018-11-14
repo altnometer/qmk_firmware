@@ -213,22 +213,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 
-/* TMUX contains common key bindings for TMUX commands
+/* TMUX contains symbols and numbers key bindings for TMUX commands
  * ,-----------------------------------------------------------------------------------.
- * |  q   |  h   |  o   |  4   |  x   |      |      |   g  |   d  |   n  |   m  |   v  |
+ * |  q   |  5   |  =   |  4   |  x   |      |      |   g  |   (  |   n  |   )  |   v  |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  y   |  3   |  "   |  1   |  .   |      |      | Left | Down |  Up  | Rght |   w  |
+ * |  y   |  3   |  2   |  1   |  .   |      |      |   ;  |   {  |   6  |   }  |   %  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |  j   |  /   |  '   |  ,   |  z   |      |      |   b  |   p  |   l  |   f  |   k  |
+ * |  j   |  ?   |  '   |  ,   |  z   |      |      |   +  |   -  |   |  |   :  |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      | Entr |      |      |      |      |
+ * |      |      |      |      | Spc  |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
  [TMUX] = LAYOUT_ortho_4x12(
-  KC_Q   , KC_H   , KC_O   , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
-  KC_Y   , KC_3   , KC_DQT , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_LEFT, KC_DOWN, MSFT_UP, KC_RIGHT, KC_PERC  ,
-  KC_J   , KC_SLSH, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_ENT , _______, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_Q   , KC_5   , KC_EQL , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_LPRN, KC_N   , KC_RPRN, KC_V   ,
+  KC_Y   , MCTL_3 , KC_2   , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_6   , KC_RCBR, KC_PERC,
+  KC_J   , KC_QUES, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
 )
 
 	/* [MOUSE] = LAYOUT( */
