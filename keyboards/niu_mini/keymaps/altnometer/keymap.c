@@ -75,6 +75,7 @@ enum planck_keycodes {
 #define  MCTL_L MT(MOD_RCTL, KC_L)
 #define  MCTL_T MT(MOD_RCTL, KC_T)
 #define  MCTL_I MT(MOD_RCTL, KC_I)
+#define  MCTL_A MT(MOD_RCTL, KC_A)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
 #define  HOME_LB MT(MOD_LCTL, KC_LBRC)
 
