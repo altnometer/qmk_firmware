@@ -84,8 +84,10 @@ enum planck_keycodes {
 #define  HOME_LB MT(MOD_LALT, KC_LBRC)
 #define  HOME_RB MT(MOD_LCTL, KC_RBRC)
 
-#define  MCTL_7 MT(MOD_RCTL, KC_7)
-#define  MCTL_3 MT(MOD_RCTL, KC_3)
+#define  MCTL_0 MT(MOD_RCTL, KC_0)
+#define  MALT_7 MT(MOD_RALT, KC_7)
+#define  MCTL_1 MT(MOD_LCTL, KC_1)
+#define  MALT_3 MT(MOD_LALT, KC_3)
 
 // One shot modifiers.
 #define OS_LGUI OSM(MOD_LGUI)
@@ -167,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [NUMER] = LAYOUT_ortho_4x12(
   _______, KC_5   , KC_EQL , KC_4   , _______, XXXXXXX, XXXXXXX, _______, KC_8   , KC_ASTR, KC_9   , KC_V   ,
-  KC_LALT, MCTL_3 , KC_2   , KC_1   , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_0   , KC_6   , MCTL_7 , KC_LALT,
+  KC_LALT, MALT_3 , KC_2   , MCTL_1 , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, MCTL_0 , KC_6   , MALT_7 , KC_LALT,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   _______, _______, _______, _______, L_BSMSP, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -232,7 +234,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [TMUX] = LAYOUT_ortho_4x12(
   KC_Q   , KC_5   , KC_EQL , KC_4   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_LPRN, KC_N   , KC_RPRN, KC_V   ,
-  KC_Y   , MCTL_3 , KC_2   , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_6   , KC_RCBR, KC_PERC,
+  KC_Y   , KC_3   , KC_2   , KC_1   , KC_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_6   , KC_RCBR, KC_PERC,
   KC_J   , KC_QUES, KC_QUOT, KC_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_SPC , XXXXXXX, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX
 )
