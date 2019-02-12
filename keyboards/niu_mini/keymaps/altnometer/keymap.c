@@ -23,7 +23,8 @@ enum planck_keycodes {
   ,MY_DOT
   ,MY_QUOT
   ,BACKLT
-  ,HOMERCB   // pseudo CTL_T(S(KC_RBRC))
+  ,HOMERCB   // pseudo CTL_A(S(KC_RBRC))
+  ,HOMELCB   // pseudo CTL_T(S(KC_LBRC))
   ,I3_ESC
   ,TMX_INS
 };
@@ -68,8 +69,10 @@ enum planck_keycodes {
 
 #define  MALT_A MT(MOD_LALT, KC_A)
 #define  MALT_Y MT(MOD_LALT, KC_Y)
+#define  MALT_I MT(MOD_LALT, KC_I)
 #define  MALT_SC MT(MOD_RALT, KC_SCLN)
 #define  MALT_W MT(MOD_RALT, KC_W)
+#define  MALT_T MT(MOD_RALT, KC_T)
 
 
 #define  MCTL_L MT(MOD_RCTL, KC_L)
@@ -77,7 +80,9 @@ enum planck_keycodes {
 #define  MCTL_I MT(MOD_RCTL, KC_I)
 #define  MCTL_A MT(MOD_RCTL, KC_A)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
-#define  HOME_LB MT(MOD_LCTL, KC_LBRC)
+// TODO: investigate why HOME_RB and } produse '}', should be nothing?
+#define  HOME_LB MT(MOD_LALT, KC_LBRC)
+#define  HOME_RB MT(MOD_LCTL, KC_RBRC)
 
 #define  MCTL_7 MT(MOD_RCTL, KC_7)
 #define  MCTL_3 MT(MOD_RCTL, KC_3)
@@ -145,7 +150,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [SYMBL] = LAYOUT_ortho_4x12(
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
-  KC_AT  , HOME_LB, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , HOMERCB, KC_PERC,
+  KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, HOMELCB, KC_DLR , HOMERCB, KC_PERC,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   _______, _______, _______, _______, _______, _______, L_BKLBS, L_NUMSP, _______, _______, _______, _______
 ),
@@ -429,8 +434,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
     case HOMERCB:
-      // CTL_T(S(KC_RBRC))
-      mt_shift(record, KC_LCTL, 0, KC_RBRC);
+      // CTL_A(S(KC_RBRC))
+      mt_shift(record, KC_LALT, 0, KC_RBRC);
+      break;
+    case HOMELCB:
+      // CTL_T(S(KC_LBRC))
+      mt_shift(record, KC_LCTL, 0, KC_LBRC);
       break;
     case I3_ESC:
         lmt(record, I3WM, KC_LGUI, KC_ESC);
