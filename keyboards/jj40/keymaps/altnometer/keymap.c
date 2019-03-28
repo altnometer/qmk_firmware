@@ -27,6 +27,8 @@ enum planck_keycodes {
   ,HOMELCB   // pseudo CTL_T(S(KC_LBRC))
   ,I3_ESC
   ,TMX_INS
+  /* ,HOME_AT */
+  /* ,HOME_PR */
 };
 
 // Mouse Declarations.
@@ -52,6 +54,8 @@ enum planck_keycodes {
 
 #define L_NUMTB LT(NUMER, KC_TAB)
 #define L_NUMEN LT(NUMER, KC_ENT)
+#define L_NUM_Y LT(NUMER, KC_Y)
+#define L_NUM_W LT(NUMER, KC_W)
 
 #define  L_BKLBS  LT(BAREBKL, KC_BSPC)
 #define  L_NUMSP  LT(NUMER, KC_SPC)
@@ -135,7 +139,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [_BEAKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
-  MALT_Y , MALT_I , MSFT_E , MCTL_A , MY_DOT , KC_DEL , XXXXXXX, KC_C   , MCTL_S , MSFT_R , MALT_T , MALT_W ,
+  L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT , KC_DEL , XXXXXXX, KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
   KC_LALT, KC_LCTL, KC_LSFT, I3_ESC , L_SYMSP, L_NAVBS, L_NAVTB, L_NUMEN, TMX_INS, XXXXXXX, XXXXXXX, XXXXXXX
 ),
@@ -445,6 +449,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       // CTL_T(S(KC_LBRC))
       mt_shift(record, KC_LCTL, 0, KC_LBRC);
       break;
+    /* case HOME_AT: */
+    /*   // on hold raise NUMER layer, on tap send KC_AT */
+    /*   lt_shift(record, KC_2, NUMER); */
+    /*   break; */
+    /* case HOME_PR: */
+    /*   // on hold raise NUMER layer, on tap send KC_PERC */
+    /*   lt_shift(record, KC_5, NUMER); */
+    /*   break; */
     case I3_ESC:
         lmt(record, I3WM, KC_LGUI, KC_ESC);
         break;
