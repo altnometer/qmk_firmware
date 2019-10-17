@@ -152,14 +152,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  \   | /  ? | '  ` | ,  ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      |      | BkSp |  Spc |  Del |      |      |      |
  * `-----------------------------------------------------------------------------------'
+ *                                              ^      ^
+ *                                             Bbkl   Num
  */
  [SYMBL] = LAYOUT_ortho_4x12(
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, _______,
   KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, HOMELPN, HOMEDLR, HOMERPN, KC_PERC,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-  _______, _______, _______, _______, _______, _______, L_BKLBS, L_NUMSP, _______, _______, _______, _______
+  _______, _______, _______, _______, _______, _______, L_BKLBS, L_NUMSP, KC_DEL, _______, _______, _______
 ),
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
