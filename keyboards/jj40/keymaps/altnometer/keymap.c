@@ -23,8 +23,9 @@ enum planck_keycodes {
   ,MY_DOT
   ,MY_QUOT
   ,BACKLT
-  ,HOMERCB   // pseudo CTL_A(S(KC_RBRC))
-  ,HOMELCB   // pseudo CTL_T(S(KC_LBRC))
+  ,HOMELPN
+  ,HOMERPN
+  ,HOMEDLR
   ,I3_ESC
   ,TMX_INS
   /* ,HOME_AT */
@@ -145,9 +146,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
- * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   (  |   *  |   )  |      |
+ * |      |  <   |  =   |  >   |   ~  |      |      |   ^  |   {  |   *  |   }  |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |  @   |  [   |  "   |  ]   | .  # |      |      |   ;  |   {  |   $  |   }  |   %  |
+ * |  @   |  [   |  "   |  ]   | .  # |      |      |   ;  |   (  |   $  |   )  |   %  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  \   | /  ? | '  ` | ,  ! |   &  |      |      |   +  |   -  |   |  |   :  |   _  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -155,8 +156,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
  [SYMBL] = LAYOUT_ortho_4x12(
-  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, _______,
-  KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, HOMELCB, KC_DLR , HOMERCB, KC_PERC,
+  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, _______,
+  KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, HOMELPN, HOMEDLR, HOMERPN, KC_PERC,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   _______, _______, _______, _______, _______, _______, L_BKLBS, L_NUMSP, _______, _______, _______, _______
 ),
@@ -184,8 +185,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
  [BARESBL] = LAYOUT_ortho_4x12(
-  XXXXXXX, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LPRN, KC_ASTR, KC_RPRN, XXXXXXX,
-  KC_AT  , KC_LBRC, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LCBR, KC_DLR , KC_RCBR, KC_PERC,
+  XXXXXXX, KC_LT  , KC_EQL , KC_GT  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, XXXXXXX,
+  KC_AT  , KC_LBRC, KC_DQT , KC_RBRC, MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_LPRN, KC_DLR , KC_RPRN, KC_PERC,
   KC_BSLS, KC_QUES, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, _______, _______, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX
 ),
@@ -441,13 +442,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }
       }
       break;
-    case HOMERCB:
-      // CTL_A(S(KC_RBRC))
-      mt_shift(record, KC_LALT, 0, KC_RBRC);
+    case HOMELPN:
+      // on press, send KC_LPRN (shifted KC_9)
+      // on hold, send KC_RCTL
+      mt_shift(record, KC_RCTL, 0, KC_9);
       break;
-    case HOMELCB:
-      // CTL_T(S(KC_LBRC))
-      mt_shift(record, KC_LCTL, 0, KC_LBRC);
+    case HOMERPN:
+      // on press, send KC_RPRN (shifted KC_0)
+      // on hold, send KC_RALT
+      mt_shift(record, KC_RALT, 0, KC_0);
+      break;
+    case HOMEDLR:
+      // on press, send KC_DLR (shifted KC_4)
+      // on hold, send KC_RSHIFT
+      mt_shift(record, KC_RSHIFT, 0, KC_4);
       break;
     /* case HOME_AT: */
     /*   // on hold raise NUMER layer, on tap send KC_AT */
