@@ -9,6 +9,7 @@ enum layers {
     ,_BEAKL
     ,SYMBL
     ,NUMER
+    ,FLAYER
     ,BAREBKL
     ,BARESBL
     ,NAVIG
@@ -57,6 +58,8 @@ enum planck_keycodes {
 #define L_NUMEN LT(NUMER, KC_ENT)
 #define L_NUM_Y LT(NUMER, KC_Y)
 #define L_NUM_W LT(NUMER, KC_W)
+
+#define L_FLRTB LT(FLAYER, KC_TAB)
 
 #define  L_BKLBS  LT(BAREBKL, KC_BSPC)
 #define  L_NUMSP  LT(NUMER, KC_SPC)
@@ -133,16 +136,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |  J   | /  ? | '  ` | ,  ! |  Z   |      |      |   B  |   P  |   L  |   F  |   K  |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Alt  | Ctrl | GUI  | GUI  | Spc  | Tab  | BkSp | Entr |  Esc | Down |  Up  |Right |
+ * | Alt  | Ctrl | GUI  | Esk  | Spc  | BkSp |  Tab | Entr |  Esc | Down |  Up  |Right |
  * `-----------------------------------------------------------------------------------'
- *                                ^      ^      ^      ^      ^
- *                               Symb   Nav    Shft   Num    Shft
+ *                         ^      ^      ^      ^      ^      ^
+ *                        I3     Symb   Nav    Shft   Num    Shft
  */
  [_BEAKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT , KC_DEL , XXXXXXX, KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_COMM, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, I3_ESC , L_SYMSP, L_NAVBS, L_NAVTB, L_NUMEN, TMX_INS, XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, I3_ESC , L_SYMSP, L_NAVBS, L_FLRTB, L_NUMEN, TMX_INS, XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -163,6 +166,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
   _______, _______, _______, _______, _______, _______, L_BKLBS, L_NUMSP, KC_DEL, _______, _______, _______
 ),
+
 /* NUMER
  * ,-----------------------------------------------------------------------------------.
  * |  d   |  5   |  =   |  4   |  x   |      |      |      |   8  |   *  |   9  |   a  |
@@ -180,6 +184,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_F   , KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_C   ,
   _______, _______, _______, KC_ENT , L_BSMSP, _______, _______, _______, _______, _______, _______, _______
 ),
+
+/* FLAYER
+ * ,-----------------------------------------------------------------------------------.
+ * |      | F5   |  =   | F4   |  ~   |      |      |   ^  |  F8  |   *  |  F9  | F11  |
+ * |------+------+------+------+------+-------------+------+------+------+------+------|
+ * |      | F3   | F2   | F1   |  .   |      |      |   ;  |  F10 |  F6  |  F7  | F12  |
+ * |------+------+------+------+------+------|------+------+------+------+------+------|
+ * |      |  /   |  '   |  ,   |  &   |      |      |   +  |   -  |   |  |   :  |      |
+ * |------+------+------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
+ * `-----------------------------------------------------------------------------------'
+ */
+ [FLAYER] = LAYOUT_ortho_4x12(
+  _______, KC_F5  , KC_EQL , KC_F4  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_F8  , KC_ASTR, KC_F9  , KC_F11 ,
+  _______, KC_F3  , KC_F2  , KC_F1  , KC_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_F10 , KC_F6  , KC_F7  , KC_F12 ,
+  _______, KC_SLSH, KC_QUOT, KC_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, _______,
+  _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
+),
+
   [BAREBKL] = LAYOUT_ortho_4x12(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_I   , MSFT_E , KC_A   , KC_HASH, XXXXXXX, XXXXXXX, KC_C   , KC_S   , MSFT_R , KC_T   , KC_W   ,
