@@ -191,7 +191,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      | F3   | F2   | F1   |  .   |      |      |   ;  |  F10 |  F6  |  F7  | F12  |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |  /   |  '   |  ,   |  &   |      |      |   +  |   -  |   |  |   :  |      |
+ * |      | F13  | F12  | F11  |  &   |      |      |   +  |   -  |   |  |   :  |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -199,7 +199,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [FLAYER] = LAYOUT_ortho_4x12(
   _______, KC_F5  , KC_EQL , KC_F4  , KC_TILD, XXXXXXX, XXXXXXX, KC_CIRC, KC_F8  , KC_ASTR, KC_F9  , KC_F11 ,
   _______, KC_F3  , KC_F2  , KC_F1  , KC_DOT , XXXXXXX, XXXXXXX, KC_SCLN, KC_F10 , KC_F6  , KC_F7  , KC_F12 ,
-  _______, KC_SLSH, KC_QUOT, KC_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, _______,
+  _______, KC_F13 , KC_F12 , KC_F11 , KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, _______,
   _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
 
