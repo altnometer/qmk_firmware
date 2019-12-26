@@ -98,6 +98,8 @@ enum planck_keycodes {
 #define  MCTL_1 MT(MOD_LCTL, KC_1)
 #define  MALT_3 MT(MOD_LALT, KC_3)
 
+#define  MGUI_ES MT(MOD_LGUI, KC_ESC)
+
 // One shot modifiers.
 #define OS_LGUI OSM(MOD_LGUI)
 #define LM_I3WM LM(I3WM, MOD_LGUI)
@@ -146,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT , KC_DEL , XXXXXXX, KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, I3_ESC , L_SYMSP, L_NAVBS, L_FLRTB, L_NUMEN, KC_END , XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, MGUI_ES, L_SYMSP, L_NAVBS, L_FLRTB, L_NUMEN, KC_END , XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
