@@ -1,4 +1,7 @@
 #include QMK_KEYBOARD_H
+// Define the tap-hold delay here, otherwise it defaults to 200 ms
+#define TAP_HOLD_DELAY 250
+#include "process_tap_hold.h"
 
 #define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
 #define _______ KC_TRNS
@@ -17,6 +20,7 @@ enum layers {
     ,TMUX
     ,MOUSE
 };
+
 enum planck_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
@@ -32,6 +36,21 @@ enum planck_keycodes {
   ,TMX_INS
   /* ,HOME_AT */
   /* ,HOME_PR */
+  ,_QK_TAP_HOLD // Has to be the last element
+};
+
+// Place this below the custom keycodes
+uint16_t QK_TAP_HOLD = _QK_TAP_HOLD;
+#define TH(n) (_QK_TAP_HOLD + n)
+
+// This is where you place you tap-hold actions
+// You can use the macros:
+// ACTION_TAP_HOLD_SHIFT(KC_TAP, KC_HOLD, KC_TAP_SHIFT, KC_HOLD_SHIFT)
+// and ACTION_TAP_HOLD(KC_TAP, KC_HOLD)
+tap_hold_action_t tap_hold_actions[] = {
+  [0] = ACTION_TAP_HOLD_SHIFT(KC_MENU, KC_HELP, KC_STOP, KC_FIND),
+  [1] = ACTION_TAP_HOLD(KC_A, KC_1),
+  [2] = ACTION_TAP_HOLD(KC_B, KC_2)
 };
 
 // Mouse Declarations.
@@ -150,7 +169,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   , XXXXXXX, XXXXXXX, KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT , KC_DEL , XXXXXXX, KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   , XXXXXXX, XXXXXXX, KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-  KC_LALT, KC_LCTL, KC_LSFT, MGUI_ES, L_SYMSP, L_NAVBS, L_FLRTB, L_NUMEN, KC_END , XXXXXXX, XXXXXXX, XXXXXXX
+  KC_LALT, KC_LCTL, KC_LSFT, MGUI_ES, L_SYMSP, L_NAVBS, L_FLRTB, L_NUMEN, TH(0)  , XXXXXXX, XXXXXXX, XXXXXXX
 ),
 /* SYMBL
  * ,-----------------------------------------------------------------------------------.
@@ -331,6 +350,10 @@ void led_set_user(uint8_t usb_led) {
 }
 
 bool has_layer_changed = true;
+
+void matrix_scan_user(void) {
+  matrix_scan_tap_hold(); // Place this function call here
+}
 
 /* void matrix_scan_user(void) { */
 /*   uint8_t layer = biton32(layer_state); */
@@ -517,5 +540,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         lmt(record, TMUX, KC_INSERT, KC_INSERT);
         break;
   }
+  process_record_tap_hold(keycode, record); // Place this function call here
   return true;  // let QMK send press/release events for the key
 }
