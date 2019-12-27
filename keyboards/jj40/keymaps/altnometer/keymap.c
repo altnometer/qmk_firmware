@@ -92,7 +92,6 @@ tap_hold_action_t tap_hold_actions[] = {
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
 #define  MSFT_ES MT(MOD_LSFT, KC_ESC)  // LSFT for keys implementing custom shift values.
-#define  MSFT_2 MT(MOD_LSFT, KC_2)
 #define  MSFT_UP MT(MOD_LSFT, KC_UP)
 
 #define  MALT_A MT(MOD_LALT, KC_A)
