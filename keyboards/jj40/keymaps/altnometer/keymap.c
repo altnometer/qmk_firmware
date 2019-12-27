@@ -94,8 +94,10 @@ enum planck_keycodes {
 #define  HOME_RB MT(MOD_LCTL, KC_RBRC)
 
 #define  MCTL_0 MT(MOD_RCTL, KC_0)
+#define  MSFT_6 MT(MOD_RSFT, KC_6)
 #define  MALT_7 MT(MOD_RALT, KC_7)
 #define  MCTL_1 MT(MOD_LCTL, KC_1)
+#define  MSFT_2 MT(MOD_LSFT, KC_2)
 #define  MALT_3 MT(MOD_LALT, KC_3)
 
 #define  MGUI_ES MT(MOD_LGUI, KC_ESC)
@@ -183,7 +185,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
  [NUMER] = LAYOUT_ortho_4x12(
   KC_D   , KC_5   , KC_EQL , KC_4   , KC_X   , XXXXXXX, XXXXXXX, _______, KC_8   , KC_ASTR, KC_9   , KC_A   ,
-  KC_E   , MALT_3 , KC_2   , MCTL_1 , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, MCTL_0 , KC_6   , MALT_7 , KC_B   ,
+  KC_E   , MALT_3 , MSFT_2 , MCTL_1 , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, MCTL_0 , MSFT_6 , MALT_7 , KC_B   ,
   KC_F   , KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_C   ,
   _______, _______, _______, KC_ENT , L_BSMSP, _______, _______, _______, _______, _______, _______, _______
 ),
