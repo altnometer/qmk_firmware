@@ -205,7 +205,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_D   , KC_5   , KC_EQL , KC_4   , KC_X   , XXXXXXX, XXXXXXX, _______, KC_8   , KC_ASTR, KC_9   , KC_A   ,
   KC_E   , MALT_3 , MSFT_2 , MCTL_1 , MY_DOT , XXXXXXX, XXXXXXX, KC_SCLN, MCTL_0 , MSFT_6 , MALT_7 , KC_B   ,
   KC_F   , KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR, XXXXXXX, XXXXXXX, KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_C   ,
-  _______, _______, _______, KC_ENT , L_BSMSP, _______, _______, _______, _______, _______, _______, _______
+  _______, _______, _______, _______, L_BSMSP, _______, _______, _______, _______, _______, _______, _______
 ),
 
 /* FLAYER
