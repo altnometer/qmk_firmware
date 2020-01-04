@@ -49,7 +49,7 @@ void matrix_scan_tap_hold(void) {
   for (uint8_t i = 0; i <= highest_th; i++) {
     if (tap_hold_actions[i].timer_active &&
         timer_elapsed(tap_hold_actions[i].timer) >= TAP_HOLD_DELAY) {
-      selectAndSendKey(&tap_hold_actions[i], true, true, true);
+      selectAndSendKey(&tap_hold_actions[i], true, true, false);
     }
   }
 }
@@ -83,14 +83,20 @@ void tap(uint16_t keycode, bool register_kc, bool unregister_kc) {
     mods |= MOD_BIT(KC_LALT);
   }
 
-  set_mods(mods);
-  send_keyboard_report();
+  if (register_kc) {
 
-  register_code(keycode);
-  unregister_code(keycode);
+    set_mods(mods);
+    send_keyboard_report();
 
-  set_mods(prev_mods);
-  send_keyboard_report();
+    register_code(keycode);
+  }
+
+  if (unregister_kc) {
+    unregister_code(keycode);
+
+    set_mods(prev_mods);
+    send_keyboard_report();
+  }
 }
 void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool unregister_code) {
   if (shiftActive()) {
@@ -114,6 +120,8 @@ void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
     } else {
       if (timer_elapsed(t->timer) < TAP_HOLD_DELAY) {
         selectAndSendKey(t, false, true, true);
+      } else {
+        selectAndSendKey(t, true, false, true);
       }
     }
   }
