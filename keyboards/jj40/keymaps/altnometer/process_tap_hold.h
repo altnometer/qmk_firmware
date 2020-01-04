@@ -37,7 +37,7 @@ void matrix_scan_tap_hold(void);
 //=============================================//
 
 void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool unregister_kc);
-void tap(uint16_t keycode);
+void tap(uint16_t keycode, bool register_kc, bool unregister_kc);
 
 static int8_t highest_th = -1;
 
@@ -53,14 +53,13 @@ void matrix_scan_tap_hold(void) {
     }
   }
 }
-static uint8_t prev_mods;
+static uint8_t prev_mods = 0;
 
-void tap(uint16_t keycode) {
+void tap(uint16_t keycode, bool register_kc, bool unregister_kc) {
   if (keycode == KC_NO) {
     return;
   }
 
-  prev_mods = get_mods();
   uint8_t mods = 0;
 
   if ((keycode & QK_RSFT) == QK_RSFT) {
@@ -95,9 +94,9 @@ void tap(uint16_t keycode) {
 }
 void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool unregister_code) {
   if (shiftActive()) {
-    tap(pressed ? t->KC_hold_shift : t->KC_tap_shift);
+    tap(pressed ? t->KC_hold_shift : t->KC_tap_shift, register_kc, unregister_code);
   } else {
-    tap(pressed ? t->KC_hold : t->KC_tap);
+    tap(pressed ? t->KC_hold : t->KC_tap, register_kc, unregister_code);
   }
   t->timer_active = false;
 }
@@ -109,6 +108,7 @@ void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
     }
     tap_hold_action_t *t = &tap_hold_actions[idx];
     if (record->event.pressed) {
+      prev_mods = get_mods();
       t->timer = timer_read();
       t->timer_active = true;
     } else {
