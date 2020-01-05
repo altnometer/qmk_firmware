@@ -1,6 +1,6 @@
 #include QMK_KEYBOARD_H
 // Define the tap-hold delay here, otherwise it defaults to 200 ms
-#define TAP_HOLD_DELAY 250
+#define TAP_HOLD_DELAY 170
 #include "process_tap_hold.h"
 
 #define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
