@@ -189,6 +189,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                     MGUI_ES, L_SYMSP, L_NAVBS,                   L_FLRTB, L_NUMEN, TH(0)
 ),
 
+/* SYMBL
+ * ,----------------------------------.             ,----------------------------------.
+ * |      |  <   |  =   |  >   |   ~  |             |   ^  |   {  |   *  |   }  |      |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |  @   |  [   |  "   |  ]   | .  # |             |   ;  |   (  |   $  |   )  |   %  |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |  \   | /  ? | '  ` | ,  ! |   &  |             |   +  |   -  |   |  |   :  |   _  |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |      |      |      |      |      |             | BkSp |  Spc |  Del |      |      |      |
+ * `----------------------------------'             `----------------------------------'
+ *                                                      ^      ^
+ *                                                     Bbkl   Num
+ */
+ [SYMBL] = LAYOUT(
+  _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD,                   KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, _______,
+  KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT ,                   KC_SCLN, HOMELPN, HOMEDLR, HOMERPN, KC_PERC,
+  KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR,                   KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
+                    _______, _______, _______,                   L_BKLBS, L_NUMSP, KC_DEL
+),
+
 };
 
 void matrix_init_user(void) {
