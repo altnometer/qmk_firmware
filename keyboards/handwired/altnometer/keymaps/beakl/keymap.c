@@ -46,7 +46,6 @@ enum planck_keycodes {
   ,MY_MINS
   ,MY_DOT
   ,MY_QUOT
-  ,BACKLT
   ,HOMELPN
   ,HOMERPN
   ,HOMEDLR
@@ -278,14 +277,162 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 };
 
-void matrix_init_user(void) {
+enum function_id {
+    SHIFT_ESC,
+};
 
+const uint16_t PROGMEM fn_actions[] = {
+  [0]  = ACTION_FUNCTION(SHIFT_ESC),
+};
+
+void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
+  static uint8_t shift_esc_shift_mask;
+  switch (id) {
+    case SHIFT_ESC:
+      shift_esc_shift_mask = get_mods()&MODS_CTRL_MASK;
+      if (record->event.pressed) {
+        if (shift_esc_shift_mask) {
+          add_key(KC_GRV);
+          send_keyboard_report();
+        } else {
+          add_key(KC_ESC);
+          send_keyboard_report();
+        }
+      } else {
+        if (shift_esc_shift_mask) {
+          del_key(KC_GRV);
+          send_keyboard_report();
+        } else {
+          del_key(KC_ESC);
+          send_keyboard_report();
+        }
+      }
+      break;
+  }
 }
+
+bool has_layer_changed = true;
 
 void matrix_scan_user(void) {
-
+  matrix_scan_tap_hold(); // Place this function call here
 }
 
-void led_set_user(uint8_t usb_led) {
+#define SHIFT_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+static uint8_t shift_on;  // shift and comma pressed
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case QWERTY:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_QWERTY);
+      }
+      return false; // skip all further processing of this key
+      break;
+    case BEAKL:
+      if (record->event.pressed) {
+        set_single_persistent_default_layer(_BEAKL);
+      }
+      return false; // skip all further processing of this key
+      break;
+
+  case MY_QUOT:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          unregister_mods(MOD_BIT(KC_LSFT));
+          register_code(KC_GRV);
+          register_mods(MOD_BIT(KC_LSFT));
+        } else {
+          register_code(KC_QUOT);
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_GRV);
+        } else {
+          unregister_code(KC_QUOT);
+        }
+      }
+      break;
+
+  case MY_DOT:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          register_code(KC_3);
+        } else {
+          register_code(KC_DOT);  // for shifted KC_HASH
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_3);  // for shifted KC_HASH
+        } else {
+          unregister_code(KC_DOT);
+        }
+      }
+      break;
+
+  case MY_COMM:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          register_code(KC_1);  // for shifted KC_EXLM
+        } else {
+          register_code(KC_COMM);
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_1);  // for shifted KC_EXLM
+        } else {
+          unregister_code(KC_COMM);
+        }
+      }
+      break;
+
+  case MY_MINS:
+      if (record->event.pressed) {
+        shift_on = get_mods()&SHIFT_MODS;
+        if (shift_on) {
+          register_code(KC_1);  // for shifted KC_EXLM
+        } else {
+          register_code(KC_MINS);
+        }
+      } else {
+        if (shift_on) {
+          unregister_code(KC_1);  // for shifted KC_EXLM
+        } else {
+          unregister_code(KC_MINS);
+        }
+      }
+      break;
+
+  case HOMELPN:
+      // on press, send KC_LPRN (shifted KC_9)
+      // on hold, send KC_RCTL
+      mt_shift(record, KC_RCTL, 0, KC_9);
+      break;
+
+  case HOMERPN:
+      // on press, send KC_RPRN (shifted KC_0)
+      // on hold, send KC_RALT
+      mt_shift(record, KC_RALT, 0, KC_0);
+      break;
+
+  case HOMEDLR:
+      // on press, send KC_DLR (shifted KC_4)
+      // on hold, send KC_RSHIFT
+      mt_shift(record, KC_RSHIFT, 0, KC_4);
+      break;
+
+    /* case HOME_AT: */
+    /*   // on hold raise NUMER layer, on tap send KC_AT */
+    /*   lt_shift(record, KC_2, NUMER); */
+    /*   break; */
+    /* case HOME_PR: */
+    /*   // on hold raise NUMER layer, on tap send KC_PERC */
+    /*   lt_shift(record, KC_5, NUMER); */
+    /*   break; */
+
+  }
+  process_record_tap_hold(keycode, record); // Place this function call here
+  return true;  // let QMK send press/release events for the key
 }
