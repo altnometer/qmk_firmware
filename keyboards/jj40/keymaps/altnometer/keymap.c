@@ -493,7 +493,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
           unregister_code(KC_COMM);
         }
       }
-      break;case MY_MINS:
+      break;
+    case MY_MINS:
       if (record->event.pressed) {
         shift_on = get_mods()&SHIFT_MODS;
         if (shift_on) {
