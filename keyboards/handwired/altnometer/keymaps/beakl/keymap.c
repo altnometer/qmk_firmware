@@ -249,14 +249,31 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_I   , MSFT_E , KC_A   , KC_HASH,                   KC_C   , KC_S   , MSFT_R , KC_T   , KC_W   ,
   KC_J   , KC_QUES, KC_GRV , KC_EXLM, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    XXXXXXX, _______, _______,                   _______, _______, XXXXXXX
+                    XXXXXXX, XXXXXXX, _______,                   _______, XXXXXXX, XXXXXXX
 ),
 
  [BARESBL] = LAYOUT(
   XXXXXXX, KC_LT  , KC_EQL , KC_GT  , KC_TILD,                   KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, XXXXXXX,
   KC_AT  , KC_LBRC, KC_DQT , KC_RBRC, MY_DOT ,                   KC_SCLN, KC_LPRN, KC_DLR , KC_RPRN, KC_PERC,
   KC_BSLS, KC_QUES, MY_QUOT, MY_COMM, KC_AMPR,                   KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
-                    XXXXXXX, _______, _______,                   _______, _______, XXXXXXX
+                    XXXXXXX, XXXXXXX, _______,                   _______, XXXXXXX, XXXXXXX
+),
+/* NAVIG
+ * ,----------------------------------.             ,----------------------------------.
+ * |      |QWERTY| BEAKL|      |      |             |      |      | Home |  End |      |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |      | Alt  | Shft | Ctrl |      |             | Left | Down |  Up  | Rght |      |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |      |      |      | Caps |      |             |      |      | PGUP | PGDN |      |
+ * `------+------+------+------+------+             +------+------+------+------+------'
+ *               |      |      |      |             |      |      |      |
+ *               `--------------------'             `--------------------'
+ */
+ [NAVIG] = LAYOUT(
+  XXXXXXX, QWERTY , BEAKL  , XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
+  XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
+                    XXXXXXX, XXXXXXX, _______,                   MSFT_EN, XXXXXXX, XXXXXXX
 ),
 
 };
