@@ -82,6 +82,7 @@ tap_hold_action_t tap_hold_actions[] = {
 // Layer Switching.
 #define L_NAVSP LT(NAVIG, KC_SPC)
 #define L_NAVBS LT(NAVIG, KC_BSPC)
+#define L_NAVES LT(NAVIG, KC_ESC)
 #define L_NAVTB LT(NAVIG, KC_TAB)
 
 #define L_SYM1 LT(SYMBL, KC_1)
@@ -136,6 +137,7 @@ tap_hold_action_t tap_hold_actions[] = {
 #define  MALT_3 MT(MOD_LALT, KC_3)
 
 #define  MGUI_ES MT(MOD_LGUI, KC_ESC)
+#define  MGUI_BS MT(MOD_LGUI, KC_BSPC)
 
 // One shot modifiers.
 #define OS_LGUI OSM(MOD_LGUI)
@@ -185,7 +187,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_ES, L_SYMSP, L_NAVBS,                   L_FLRTB, L_NUMEN, TH(0)
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRTB, L_NUMEN, TH(0)
 ),
 
 /* SYMBL
