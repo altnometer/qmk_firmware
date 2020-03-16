@@ -65,7 +65,8 @@ uint16_t QK_TAP_HOLD = _QK_TAP_HOLD;
 // ACTION_TAP_HOLD_SHIFT(KC_TAP, KC_HOLD, KC_TAP_SHIFT, KC_HOLD_SHIFT)
 // and ACTION_TAP_HOLD(KC_TAP, KC_HOLD)
 tap_hold_action_t tap_hold_actions[] = {
-  [0] = ACTION_TAP_HOLD_SHIFT(KC_MENU, KC_HELP, KC_STOP, KC_FIND),
+                                        //  [0] = ACTION_TAP_HOLD_SHIFT(KC_MENU, KC_HELP, KC_STOP, KC_FIND),
+  [0] = ACTION_TAP_HOLD_SHIFT(KC_TAB, KC_HELP, KC_STOP, KC_FIND),
   [1] = ACTION_TAP_HOLD(KC_A, KC_1),
   [2] = ACTION_TAP_HOLD(KC_B, KC_2)
 };
@@ -97,7 +98,8 @@ tap_hold_action_t tap_hold_actions[] = {
 #define L_NUM_Y LT(NUMER, KC_Y)
 #define L_NUM_W LT(NUMER, KC_W)
 
-#define L_FLRTB LT(FLAYER, KC_TAB)
+//#define L_FLRTB LT(FLAYER, KC_TAB)
+#define L_FLRME LT(FLAYER, KC_MENU)
 
 #define  L_BKLBS  LT(BAREBKL, KC_BSPC)
 #define  L_NUMSP  LT(NUMER, KC_SPC)
@@ -187,7 +189,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   L_NUM_Y, MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , L_NUM_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRTB, L_NUMEN, TH(0)
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0)
 ),
 
 /* SYMBL
