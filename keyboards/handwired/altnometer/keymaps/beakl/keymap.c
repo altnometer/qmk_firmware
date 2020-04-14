@@ -66,7 +66,8 @@ uint16_t QK_TAP_HOLD = _QK_TAP_HOLD;
 // and ACTION_TAP_HOLD(KC_TAP, KC_HOLD)
 tap_hold_action_t tap_hold_actions[] = {
                                         //  [0] = ACTION_TAP_HOLD_SHIFT(KC_MENU, KC_HELP, KC_STOP, KC_FIND),
-  [0] = ACTION_TAP_HOLD_SHIFT(KC_TAB, KC_HELP, KC_STOP, KC_FIND),
+                                        //  [0] = ACTION_TAP_HOLD_SHIFT(KC_TAB, KC_HELP, KC_STOP, KC_FIND),
+  [0] = ACTION_TAP_HOLD(KC_TAB, KC_HELP),
   [1] = ACTION_TAP_HOLD(KC_A, KC_1),
   [2] = ACTION_TAP_HOLD(KC_B, KC_2)
 };
