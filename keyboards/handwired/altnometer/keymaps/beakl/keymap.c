@@ -268,7 +268,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+             +------+------+------+------+------|
  * |      | Alt  | Shft | Ctrl |      |             | Left | Down |  Up  | Rght |      |
  * |------+------+------+------+------+             +------+------+------+------+------|
- * |      |      |      | Caps |      |             |      |      | PGUP | PGDN |      |
+ * |      |      |      |      |      |             |      |      | PGUP | PGDN |      |
  * `------+------+------+------+------+             +------+------+------+------+------'
  *               |      |      |      |             |      |      |      |
  *               `--------------------'             `--------------------'
@@ -276,7 +276,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [NAVIG] = LAYOUT(
   XXXXXXX, QWERTY , BEAKL  , XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
   XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
-  XXXXXXX, XXXXXXX, XXXXXXX, KC_CAPS, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
+  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
                     XXXXXXX, XXXXXXX, _______,                   MSFT_EN, XXXXXXX, XXXXXXX
 ),
 
