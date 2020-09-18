@@ -190,7 +190,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , KC_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0)
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, KC_TAB
+                    /* MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0) */
 ),
 
 /* SYMBL
