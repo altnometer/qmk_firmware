@@ -16,6 +16,15 @@
 #include QMK_KEYBOARD_H
 
 #include "keycode_functions.h"
+#include "timer.h"
+
+#include <stdint.h>
+#include <stdbool.h>
+#include "action.h"
+#include "action_layer.h"
+#include "action_tapping.h"
+#include "keycode.h"
+#include "timer.h"
 
 // Define the tap-hold delay here, otherwise it defaults to 200 ms
 #define TAP_HOLD_DELAY 170
@@ -51,6 +60,7 @@ enum planck_keycodes {
   ,HOMEDLR
   ,I3_ESC
   ,TMX_INS
+  ,MY_ALTF
   /* ,HOME_AT */
   /* ,HOME_PR */
   ,_QK_TAP_HOLD // Has to be the last element
@@ -190,7 +200,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , KC_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, KC_TAB
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, MY_ALTF
+                    /* MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, KC_TAB */
                     /* MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0) */
 ),
 
@@ -327,6 +338,8 @@ void matrix_scan_user(void) {
 static uint8_t shift_on;  // shift and comma pressed
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  static uint16_t ram_alt_flayer_timer;
+
   switch (keycode) {
   case QWERTY:
       if (record->event.pressed) {
@@ -437,6 +450,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*   // on hold raise NUMER layer, on tap send KC_PERC */
     /*   lt_shift(record, KC_5, NUMER); */
     /*   break; */
+
+  case MY_ALTF:
+    if(record->event.pressed){
+      ram_alt_flayer_timer = timer_read();
+      layer_on(FLAYER);
+      register_mods(MOD_LALT);
+    } else {
+      layer_off(FLAYER);
+      unregister_mods(MOD_LALT);
+      /* if (timer_elapsed(ram_alt_flayer_timer) < get_tapping_term(keycode)) { */
+      if (timer_elapsed(ram_alt_flayer_timer) < TAPPING_TERM) {
+        tap_code(KC_TAB);
+      }
+    }
+    break;
 
   }
   process_record_tap_hold(keycode, record); // Place this function call here
