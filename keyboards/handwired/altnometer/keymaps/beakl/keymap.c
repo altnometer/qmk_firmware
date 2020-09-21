@@ -255,8 +255,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               `--------------------'             `--------------------'
  */
  [FLAYER] = LAYOUT(
-  _______, KC_F5  , KC_F15 , KC_F4  , KC_F14 ,                   KC_F18 , KC_F8  , KC_F19 , KC_F9  , _______,
-  _______, MALT_F3, MSFT_F2, MCTL_F1, KC_F21 ,                   KC_F23 , MCTLF10, MSFT_F6, MALT_F7, _______,
+  _______, KC_F5  , KC_F15 , KC_F4  , KC_F14 ,                   KC_F18 , KC_F8  , KC_F19 , KC_F9  , KC_LANG9,
+  _______, MALT_F3, MSFT_F2, MCTL_F1, KC_F21 ,                   KC_F23 , MCTLF10, MSFT_F6, MALT_F7, KC_INT7,
   _______, KC_F13 , KC_F12 , KC_F11 , KC_F22 ,                   KC_F24 , KC_F20 , KC_F16 , KC_F17 , _______,
                     _______, _______, _______,                   _______, _______, _______
 ),
