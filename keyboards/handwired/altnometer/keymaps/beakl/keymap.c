@@ -149,6 +149,13 @@ tap_hold_action_t tap_hold_actions[] = {
 #define  MSFT_2 MT(MOD_LSFT, KC_2)
 #define  MALT_3 MT(MOD_LALT, KC_3)
 
+#define  MCTLF10 MT(MOD_RCTL, KC_F10)
+#define  MSFT_F6 MT(MOD_RSFT, KC_F6)
+#define  MALT_F7 MT(MOD_RALT, KC_F7)
+#define  MCTL_F1 MT(MOD_LCTL, KC_F1)
+#define  MSFT_F2 MT(MOD_LSFT, KC_F2)
+#define  MALT_F3 MT(MOD_LALT, KC_F3)
+
 #define  MGUI_ES MT(MOD_LGUI, KC_ESC)
 #define  MGUI_BS MT(MOD_LGUI, KC_BSPC)
 
