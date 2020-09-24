@@ -23,9 +23,9 @@ the Free Software Foundation, either version 2 of the License, or
 #define PERMISSIVE_HOLD
 
 /* https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#tapping-force-hold */
-#define TAPPING_FORCE_HOLD
+/* #define TAPPING_FORCE_HOLD */
 
 /* https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#retro-tapping */
-#define RETRO_TAPPING
+/* #define RETRO_TAPPING */
 
 #endif
