@@ -26,7 +26,19 @@
 #include "keycode.h"
 #include "timer.h"
 
-// Define the tap-hold delay here, otherwise it defaults to 200 ms
+// Define the TAP_HOLD_DELAY before including 'process_tap_hold.h'
+// otherwise it will default to 200 ms when used there
+// "process_tap_hold.h" is a copy-paste code.
+// Hence, it is awkward. But it works well.
+// It is used to process tap-hold for key codes.
+// The solution is not perfect yet for my purposes:
+// - remap the hold keycode in Xorg Xmodmap to Hyper
+//   + time must pass to consider it as hold, but using it
+//     as Hyper-somekey will not register Hyper if you do it
+//     fast enough. Maybe you need:
+//       - register keycode that is translated to Hype first
+//       - remove it if the event ends up being 'tap'
+//         and keep it if it is 'hold'
 #define TAP_HOLD_DELAY 170
 #include "process_tap_hold.h"
 
@@ -55,6 +67,7 @@ enum planck_keycodes {
   ,MY_MINS
   ,MY_DOT
   ,MY_QUOT
+  ,TH_TBHP
   ,HOMELPN
   ,HOMERPN
   ,HOMEDLR
@@ -63,12 +76,22 @@ enum planck_keycodes {
   ,MY_ALTF
   /* ,HOME_AT */
   /* ,HOME_PR */
-  ,_QK_TAP_HOLD // Has to be the last element
+  // so, adding to this enum will assign some keycode
+  // to whatever we add here, hence,
+  // _MY_CATCH_TAP_HOLD_KEYCODES has a keycode value now:
+  // it is used in 'process_tap_hold.h'
+  ,_MY_CATCH_TAP_HOLD_KEYCODES // Has to be the last element
 };
 
-// Place this below the custom keycodes
-uint16_t QK_TAP_HOLD = _QK_TAP_HOLD;
-#define TH(n) (_QK_TAP_HOLD + n)
+// _MY_CATCH_TAP_HOLD_KEYCODES is a custom keycode
+// (i.e., defined in planck_keycodes)
+// it is used to process tap-hold events
+uint16_t MY_TAP_HOLD_KEYCODE = _MY_CATCH_TAP_HOLD_KEYCODES;
+// TH(n) marks custom keycodes that you wish to process
+// differently for tap and hold
+// the 'n' index is will be used to define keycodes given
+// ther 'n' index in 'tap_hold_action' variable
+#define TH(n) (_MY_CATCH_TAP_HOLD_KEYCODES + n)
 
 // This is where you place you tap-hold actions
 // You can use the macros:
@@ -138,7 +161,7 @@ tap_hold_action_t tap_hold_actions[] = {
 #define  MCTL_I MT(MOD_RCTL, KC_I)
 #define  MCTL_A MT(MOD_RCTL, KC_A)
 #define  MCTL_S MT(MOD_LCTL, KC_S)
-// TODO: investigate why HOME_RB and } produse '}', should be nothing?
+// TODO: investigate why HOME_RB and } produce '}', should be nothing?
 #define  HOME_LB MT(MOD_LALT, KC_LBRC)
 #define  HOME_RB MT(MOD_LCTL, KC_RBRC)
 
@@ -156,6 +179,7 @@ tap_hold_action_t tap_hold_actions[] = {
 #define  MSFT_F2 MT(MOD_LSFT, KC_F2)
 #define  MALT_F3 MT(MOD_LALT, KC_F3)
 
+// LGUI Left GUI (Windows/Command/Super key)
 #define  MGUI_ES MT(MOD_LGUI, KC_ESC)
 #define  MGUI_BS MT(MOD_LGUI, KC_BSPC)
 
@@ -191,25 +215,26 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 ),
 
 /* _BEAKL (beakl10)
- * ,----------------------------------.             ,----------------------------------.
- * |  Q   |  H   |  O   |  U   |  X   |             |   G  |   D  |   N  |   M  |   V  |
- * |------+------+------+------+------+             +------+------+------+------+------|
- * |  Y   |  I   |  E   |  A   | .  # |             |   C  |   S  |   R  |   T  |   W  |
- * |------+------+------+------+------+             +------+------+------+------+------|
- * |  J   | /  ? | '  ` | ,  ! |  Z   |             |   B  |   P  |   L  |   F  |   K  |
- * `------+------+------+------+------+             +------+------+------+------+------'
- *               | Esc  | Spc  | BkSp |             |  Tab | Entr |  Esc |
+ * ,----------------------------------.             ,-------------------------------------.
+ * |  Q   |  H   |  O   |  U   |  X   |             |   G     |   D  |   N  |   M  |   V  |
+ * |------+------+------+------+------+             +---------+------+------+------+------|
+ * |  Y   |  I   |  E   |  A   | .  # |             |   C     |   S  |   R  |   T  |   W  |
+ * |------+------+------+------+------+             +---------+------+------+------+------|
+ * |  J   | /  ? | '  ` | ,  ! |  Z   |             |   B     |   P  |   L  |   F  |   K  |
+ * `------+------+------+------+------+             +---------+------+------+------+------'
+ *               | Esc  | Spc  | BKSP |             | KC_MENU | Entr |  TAB |
  *               `--------------------'             `--------------------'
- *                   ^      ^      ^                    ^      ^      ^
- *                  I3     Symb   Nav                 Shft    Num    Shft
+ *                   ^      ^      ^                    ^        ^      ^
+ *                Super   Symb   Nav                 FLAYER    Num    KC_HELP (Xmodmap remap to HYPER)
  */
  [_BEAKL] = LAYOUT(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , KC_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, MY_ALTF
-                    /* MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, KC_TAB */
-                    /* MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0) */
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0)
+                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH_TBHP */
+                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, KC_TAB */
+                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, MY_ALTF */
 ),
 
 /* SYMBL
@@ -346,20 +371,42 @@ static uint8_t shift_on;  // shift and comma pressed
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t ram_alt_flayer_timer;
+  //static uint16_t ram_tab_help_timer;
 
   switch (keycode) {
+
   case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
       return false; // skip all further processing of this key
       break;
-    case BEAKL:
+
+  case BEAKL:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_BEAKL);
       }
       return false; // skip all further processing of this key
       break;
+
+      // this does not work for me, I never get KC_TAB
+      // retry it when I update my repository from qmk-firmware
+
+      //case TH_TBHP:
+      //  if (record->tap.count && record->event.pressed) {
+      //    tap_code16(KC_TAB);
+      //    //ram_tab_help_timer = timer_read();
+      //    //ram_tab_help_timer = true;
+      //  } else if (record->event.pressed) {
+      //    tap_code16(KC_HELP);
+      //    //if (timer_elapsed(ram_tab_help_timer) < TAP_HOLD_DELAY) {
+      //    //  register_code(KC_TAB);
+      //    //} else {
+      //    //  register_code(KC_HELP);
+      //    //}
+      //  }
+      //  return false; // skip all further processing of this key
+      //  break;
 
   case MY_QUOT:
       if (record->event.pressed) {
@@ -459,7 +506,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*   break; */
 
   case MY_ALTF:
-    if(record->event.pressed){
+    if(record->event.pressed) {
       ram_alt_flayer_timer = timer_read();
       layer_on(FLAYER);
       register_mods(MOD_LALT);

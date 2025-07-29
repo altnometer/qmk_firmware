@@ -24,10 +24,17 @@ typedef struct tap_hold_action_t {
 
 extern tap_hold_action_t tap_hold_actions[];
 
-// QK_TAP_HOLD and QK_TAP_HOLD_MAX should be defined in the enum
-// quantum_keycodes at qmk_firmware/quantum/quantum_keycodes.h
-extern uint16_t QK_TAP_HOLD;
-#define QK_TAP_HOLD_MAX QK_TAP_HOLD + 10
+// MY_TAP_HOLD_KEYCODE and MY_TAP_HOLD_KEYCODE_MAX
+// are the custom kecodes used to catch keycode for processing
+// tap-hold action
+// they are defined in planck_keycodes in ./keymap.c
+extern uint16_t MY_TAP_HOLD_KEYCODE;
+// allow only limited (e.g., 100) such keycodes
+// this is only relevant if there will be other
+// keycodes defined after.
+// but since I define _MY_CATCH_TAP_HOLD_KEYCODES
+// as the last keycode, the limit is not really relevant
+#define MY_TAP_HOLD_KEYCODE_MAX MY_TAP_HOLD_KEYCODE + 100
 
 void process_record_tap_hold(uint16_t keycode, keyrecord_t *record);
 void matrix_scan_tap_hold(void);
@@ -106,9 +113,10 @@ void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool
   }
   t->timer_active = false;
 }
+
 void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
-  if (QK_TAP_HOLD <= keycode && keycode <= QK_TAP_HOLD_MAX) {
-    uint16_t idx = keycode - QK_TAP_HOLD;
+  if (MY_TAP_HOLD_KEYCODE <= keycode && keycode <= MY_TAP_HOLD_KEYCODE_MAX) {
+    uint16_t idx = keycode - MY_TAP_HOLD_KEYCODE;
     if ((int16_t)idx > highest_th) {
       highest_th = idx;
     }
