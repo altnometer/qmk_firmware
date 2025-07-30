@@ -42,7 +42,7 @@
 #define TAP_HOLD_DELAY 170
 #include "process_tap_hold.h"
 
-#define MODS_CTRL_MASK  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define MODS_CTRL_MASK  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
 // Layers Declarations.
@@ -189,8 +189,6 @@ tap_hold_action_t tap_hold_actions[] = {
 
 // Key code abbreviations.
 #define  KC_RGHT KC_RIGHT
-#define  KC_PGDN KC_PGDOWN
-
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -330,9 +328,6 @@ enum function_id {
     SHIFT_ESC,
 };
 
-const uint16_t PROGMEM fn_actions[] = {
-  [0]  = ACTION_FUNCTION(SHIFT_ESC),
-};
 
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   static uint8_t shift_esc_shift_mask;
@@ -360,13 +355,18 @@ void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   }
 }
 
+const uint16_t PROGMEM fn_actions[] = {
+  //[0]  = ACTION_FUNCTION(SHIFT_ESC),
+};
+
+
 bool has_layer_changed = true;
 
 void matrix_scan_user(void) {
   matrix_scan_tap_hold(); // Place this function call here
 }
 
-#define SHIFT_MODS  (MOD_BIT(KC_LSHIFT)|MOD_BIT(KC_RSHIFT))
+#define SHIFT_MODS  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
 static uint8_t shift_on;  // shift and comma pressed
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -492,8 +492,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
   case HOMEDLR:
       // on press, send KC_DLR (shifted KC_4)
-      // on hold, send KC_RSHIFT
-      mt_shift(record, KC_RSHIFT, 0, KC_4);
+      // on hold, send KC_RSFT
+      mt_shift(record, KC_RSFT, 0, KC_4);
       break;
 
     /* case HOME_AT: */

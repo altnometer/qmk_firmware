@@ -19,7 +19,6 @@ the Free Software Foundation, either version 2 of the License, or
 /* #define ONESHOT_TIMEOUT 800 */
 
 #define PREVENT_STUCK_MODIFIERS
-#define IGNORE_MOD_TAP_INTERRUPT
 #define PERMISSIVE_HOLD
 
 /* https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#tapping-force-hold */
