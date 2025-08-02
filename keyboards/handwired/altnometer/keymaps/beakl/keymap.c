@@ -16,15 +16,14 @@
 #include QMK_KEYBOARD_H
 
 #include "keycode_functions.h"
-#include "timer.h"
+//#include "timer.h"
 
 #include <stdint.h>
 #include <stdbool.h>
-#include "action.h"
-#include "action_layer.h"
-#include "action_tapping.h"
-#include "keycode.h"
-#include "timer.h"
+//#include "action.h"
+//#include "action_layer.h"
+//#include "action_tapping.h"
+//#include "keycode.h"
 
 // Define the TAP_HOLD_DELAY before including 'process_tap_hold.h'
 // otherwise it will default to 200 ms when used there
@@ -45,10 +44,11 @@
 #define MODS_CTRL_MASK  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+
 // Layers Declarations.
 enum layers {
-     _QWERTY = 0
-    ,_BEAKL
+    _BEAKL = 0
+    ,_QWERTY
     ,SYMBL
     ,NUMER
     ,FLAYER
@@ -133,6 +133,7 @@ tap_hold_action_t tap_hold_actions[] = {
 #define L_NUM_W LT(NUMER, KC_W)
 
 //#define L_FLRTB LT(FLAYER, KC_TAB)
+// KC_MENU is interpreted in Xorg (and Emacs) as <SunProps>
 #define L_FLRME LT(FLAYER, KC_MENU)
 
 #define  L_BKLBS  LT(BAREBKL, KC_BSPC)
@@ -192,26 +193,6 @@ tap_hold_action_t tap_hold_actions[] = {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* _QWERTY
- * ,----------------------------------.             ,----------------------------------.
- * |  Q   |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |
- * |------+------+------+------+------+             +------+------+------+------+------|
- * |  A   |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |
- * |------+------+------+------+------+             +------+------+------+------+------|
- * |  Z   |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  |
- * `------+------+------+------+------+             +------+------+------+------+------'
- *               | GUI  | Spc  | Tab  |             | BkSp |  Entr | Esc |
- *               `--------------------'             `--------------------'
- *                         ^      ^                     ^      ^      ^
- *                        Symb   Nav                   Shft   Num    Shft
- */
-[_QWERTY] = LAYOUT(
-  KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                      KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   ,
-  MALT_A , MCTL_S , KC_D   , KC_F   , KC_G   ,                      KC_H   , KC_J   , KC_K   , MCTL_L , MALT_SC,
-  KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,                      KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH,
-                    OS_LGUI, L_SYMSP, L_NAVBS,                      L_NUMTB, MSFT_EN, MSFT_ES
-),
-
 /* _BEAKL (beakl10)
  * ,----------------------------------.             ,-------------------------------------.
  * |  Q   |  H   |  O   |  U   |  X   |             |   G     |   D  |   N  |   M  |   V  |
@@ -225,14 +206,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                   ^      ^      ^                    ^        ^      ^
  *                Super   Symb   Nav                 FLAYER    Num    KC_HELP (Xmodmap remap to HYPER)
  */
- [_BEAKL] = LAYOUT(
+ [_BEAKL] = LAYOUT_split_3x5_3(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , KC_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH(0)
-                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH_TBHP */
-                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, KC_TAB */
-                 /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, MY_ALTF */
+                    MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH(0)
+                  /*  MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH_TBHP */
+                   /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, KC_TAB */
+                  /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, MY_ALTF */
+),
+
+/* _QWERTY
+ * ,----------------------------------.             ,----------------------------------.
+ * |  Q   |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |  A   |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  |
+ * |------+------+------+------+------+             +------+------+------+------+------|
+ * |  Z   |   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  |   /  |
+ * `------+------+------+------+------+             +------+------+------+------+------'
+ *               | GUI  | Spc  | Tab  |             | BkSp |  Entr | Esc |
+ *               `--------------------'             `--------------------'
+ *                         ^      ^                     ^      ^      ^
+ *                        Symb   Nav                   Shft   Num    Shft
+ */
+[_QWERTY] = LAYOUT_split_3x5_3(
+  KC_Q   , KC_W   , KC_E   , KC_R   , KC_T   ,                      KC_Y   , KC_U   , KC_I   , KC_O   , KC_P   ,
+  MALT_A , MCTL_S , KC_D   , KC_F   , KC_G   ,                      KC_H   , KC_J   , KC_K   , MCTL_L , MALT_SC,
+  KC_Z   , KC_X   , KC_C   , KC_V   , KC_B   ,                      KC_N   , KC_M   , KC_COMM, KC_DOT , KC_SLSH,
+                    OS_LGUI, L_SYMSP, L_NAVBS,                      L_NUMTB, MSFT_EN, MSFT_ES
 ),
 
 /* SYMBL
@@ -248,7 +249,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                                      ^      ^
  *                                                     Bbkl   Num
  */
- [SYMBL] = LAYOUT(
+ [SYMBL] = LAYOUT_split_3x5_3(
   _______, KC_LT  , KC_EQL , KC_GT  , KC_TILD,                   KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, _______,
   KC_AT  , HOME_LB, KC_DQT , HOME_RB, MY_DOT ,                   KC_SCLN, HOMELPN, HOMEDLR, HOMERPN, KC_PERC,
   KC_BSLS, KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR,                   KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
@@ -266,7 +267,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               |      |      |      |             |      |      |      |
  *               `--------------------'             `--------------------'
  */
- [NUMER] = LAYOUT(
+ [NUMER] = LAYOUT_split_3x5_3(
   KC_D   , KC_5   , KC_EQL , KC_4   , KC_X   ,                   _______, KC_8   , KC_ASTR, KC_9   , KC_A   ,
   KC_E   , MALT_3 , MSFT_2 , MCTL_1 , MY_DOT ,                   KC_SCLN, MCTL_0 , MSFT_6 , MALT_7 , KC_B   ,
   KC_F   , KC_SLSH, MY_QUOT, MY_COMM, KC_AMPR,                   KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_C   ,
@@ -284,21 +285,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               |      |      |      |             |      |      |      |
  *               `--------------------'             `--------------------'
  */
- [FLAYER] = LAYOUT(
+ [FLAYER] = LAYOUT_split_3x5_3(
   XXXXXXX, KC_F5  , KC_F15 , KC_F4  , KC_F14 ,                   KC_F18 , KC_F8  , KC_STOP, KC_F9  , XXXXXXX,
   KC_FIND, MALT_F3, MSFT_F2, MCTL_F1, KC_F21 ,                   KC_F23 , MCTLF10, MSFT_F6, MALT_F7, KC_COPY,
   XXXXXXX, KC_F13 , KC_F12 , KC_F11 , KC_F22 ,                   KC_F24 , KC_F20 , KC_F16 , KC_F17 , XXXXXXX,
                     KC_VOLU, KC_MPLY, KC_VOLD,                   XXXXXXX, XXXXXXX, _______
 ),
 
- [BAREBKL] = LAYOUT(
+ [BAREBKL] = LAYOUT_split_3x5_3(
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , KC_I   , MSFT_E , KC_A   , KC_HASH,                   KC_C   , KC_S   , MSFT_R , KC_T   , KC_W   ,
   KC_J   , KC_QUES, KC_GRV , KC_EXLM, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
                     XXXXXXX, XXXXXXX, _______,                   _______, XXXXXXX, XXXXXXX
 ),
 
- [BARESBL] = LAYOUT(
+ [BARESBL] = LAYOUT_split_3x5_3(
   XXXXXXX, KC_LT  , KC_EQL , KC_GT  , KC_TILD,                   KC_CIRC, KC_LCBR, KC_ASTR, KC_RCBR, XXXXXXX,
   KC_AT  , KC_LBRC, KC_DQT , KC_RBRC, MY_DOT ,                   KC_SCLN, KC_LPRN, KC_DLR , KC_RPRN, KC_PERC,
   KC_BSLS, KC_QUES, MY_QUOT, MY_COMM, KC_AMPR,                   KC_PLUS, KC_MINS, KC_PIPE, KC_COLN, KC_UNDS,
@@ -315,7 +316,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               |      |      |      |             |      |      |      |
  *               `--------------------'             `--------------------'
  */
- [NAVIG] = LAYOUT(
+ [NAVIG] = LAYOUT_split_3x5_3(
   XXXXXXX, QWERTY , BEAKL  , XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_HOME, KC_END, XXXXXXX,
   XXXXXXX, KC_LALT, KC_LSFT, KC_LCTL, XXXXXXX,                   KC_LEFT, KC_DOWN, KC_UP  , KC_RIGHT, XXXXXXX,
   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                   XXXXXXX, XXXXXXX, KC_PGUP, KC_PGDN, XXXXXXX,
@@ -360,6 +361,20 @@ const uint16_t PROGMEM fn_actions[] = {
 };
 
 
+// HOLD_ON_OTHER_KEY_PRESS
+// https://docs.qmk.fm/tap_hold#hold-on-other-key-press
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case TH(0):
+            // Immediately select the hold action when another key is pressed.
+            return true;
+        default:
+            // Do not select the hold action when another key is pressed.
+            return false;
+    }
+}
+
 bool has_layer_changed = true;
 
 void matrix_scan_user(void) {
@@ -367,11 +382,12 @@ void matrix_scan_user(void) {
 }
 
 #define SHIFT_MODS  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
-static uint8_t shift_on;  // shift and comma pressed
+static uint8_t shift_on;  // shift is pressed
+
+static uint16_t ram_timer_user;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t ram_alt_flayer_timer;
-  //static uint16_t ram_tab_help_timer;
 
   switch (keycode) {
 
@@ -389,24 +405,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false; // skip all further processing of this key
       break;
 
-      // this does not work for me, I never get KC_TAB
-      // retry it when I update my repository from qmk-firmware
-
-      //case TH_TBHP:
-      //  if (record->tap.count && record->event.pressed) {
-      //    tap_code16(KC_TAB);
-      //    //ram_tab_help_timer = timer_read();
-      //    //ram_tab_help_timer = true;
-      //  } else if (record->event.pressed) {
-      //    tap_code16(KC_HELP);
-      //    //if (timer_elapsed(ram_tab_help_timer) < TAP_HOLD_DELAY) {
-      //    //  register_code(KC_TAB);
-      //    //} else {
-      //    //  register_code(KC_HELP);
-      //    //}
-      //  }
-      //  return false; // skip all further processing of this key
-      //  break;
+      // process
+      // - tap for KC_TAB
+      // - hold for KC_HELP (further reintrepreted by Xorg as Hyper key)
+  case TH_TBHP:
+    if (record->event.pressed) {
+      ram_timer_user = timer_read();
+      ram_timer_user = true;
+      // register KC_HELP for 'hold' (it is used as HYPER mod key)
+      // this will make all keybindings using HYPER fuctional
+      // from the moment of the key press.
+      //register_code(KC_TAB);
+    } else {
+      if (timer_elapsed(ram_timer_user) < TAP_HOLD_DELAY) {
+        // this is a 'tap', not a 'hold',
+        // hence, unregister KC_HELP (for 'hold')
+        // register KC_TAB for 'tap'
+        //unregister_code(KC_HELP);
+        tap_code(KC_TAB);
+      } else {
+        tap_code(KC_HELP);
+      }
+    }
+    return false; // skip all further processing of this key
+    break;
 
   case MY_QUOT:
       if (record->event.pressed) {
@@ -505,6 +527,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     /*   lt_shift(record, KC_5, NUMER); */
     /*   break; */
 
+   /*
+    * this is is an examle of how you can
+    * - on hold
+    *   1. activate a layer
+    *   2. send MOD keycodes
+    * -on tap
+    *   1. just sent a keycode
+    */
   case MY_ALTF:
     if(record->event.pressed) {
       ram_alt_flayer_timer = timer_read();
@@ -521,6 +551,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
 
   }
-  process_record_tap_hold(keycode, record); // Place this function call here
+  process_record_tap_hold(keycode, record); // Place this function at the end
   return true;  // let QMK send press/release events for the key
 }

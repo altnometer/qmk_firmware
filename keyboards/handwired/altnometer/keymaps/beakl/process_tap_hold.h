@@ -1,3 +1,11 @@
+/*
+
+  Copyright 2025 The KeyGlove originator.
+
+  You may use the content of this file as you wish.
+ 
+ */
+
 #ifndef PROCESS_TAP_HOLD_H
 #define PROCESS_TAP_HOLD_H
 
@@ -105,6 +113,7 @@ void tap(uint16_t keycode, bool register_kc, bool unregister_kc) {
     send_keyboard_report();
   }
 }
+
 void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool unregister_code) {
   if (shiftActive()) {
     tap(pressed ? t->KC_hold_shift : t->KC_tap_shift, register_kc, unregister_code);

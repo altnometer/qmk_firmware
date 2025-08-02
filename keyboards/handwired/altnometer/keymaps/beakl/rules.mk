@@ -3,7 +3,7 @@ EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
 NKRO_ENABLE = no            # Nkey Rollover - if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
 TAP_DANCE_ENABLE = no       # raises an error when compiling if tap_dance_actions[] isn't defined.
 
-CONSOLE_ENABLE = no         # Console for debug(+400)
+#CONSOLE_ENABLE = no         # Console for debug(+400)
 COMMAND_ENABLE = no         # Commands for debug and configuration
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 MIDI_ENABLE = no            # MIDI controls

@@ -19,7 +19,23 @@ the Free Software Foundation, either version 2 of the License, or
 /* #define ONESHOT_TIMEOUT 800 */
 
 #define PREVENT_STUCK_MODIFIERS
+// tap-or-hold decision modes
+// see https://docs.qmk.fm/tap_hold#tap-or-hold-decision-modes
+// 1. default
+// 2. PERMISSIVE_HOLD
+// 3. HOLD_ON_OTHER_KEY_PRESS
 #define PERMISSIVE_HOLD
+
+// https://docs.qmk.fm/tap_hold#hold-on-other-key-press
+// rather than defining HOLD_ON_OTHER_KEY_PRESS for all keys
+// define HOLD_ON_OTHER_KEY_PRESS just for specific keycodes.
+// specify these keycodes in function
+// get_hold_on_other_key_press defined in keymap.c
+// this is useful for dual-role key that never is used it
+// typing usual sequences, e.g., KC_TAB plus some mode key because
+// KC_TAB is not used in typing any sequence of characters
+// (in contrast to 'ing', 'tion', 'qui', etc)
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 
 /* https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#tapping-force-hold */
 /* #define TAPPING_FORCE_HOLD */
