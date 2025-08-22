@@ -1,16 +1,37 @@
 /*
-
   Copyright 2025 The KeyGlove originator.
 
   You may use the content of this file as you wish.
- 
  */
+
+/**
+
+   it seems that this file has no use anymore.
+   it is left here just as an example of
+   - custom switch matrix scan
+   - custom tap-or-hold processing
+     + although tap-or-hold
+       did not produce desired results:
+       - it unregisters the mods that
+         were pressed before.
+
+  CONSIDER REMOVING THIS FILE.
+ */
+
+#include "print.h"
 
 #ifndef PROCESS_TAP_HOLD_H
 #define PROCESS_TAP_HOLD_H
 
+#define ctrActive() \
+  (keyboard_report->mods & (MOD_BIT(KC_LEFT_CTRL) | MOD_BIT(KC_RIGHT_CTRL)))
 #define shiftActive() \
-  (keyboard_report->mods & (MOD_BIT(KC_LSFT) | MOD_BIT(KC_RSFT)))
+  (keyboard_report->mods & (MOD_BIT(KC_LEFT_SHIFT) | MOD_BIT(KC_RIGHT_SHIFT)))
+#define altActive() \
+  (keyboard_report->mods & (MOD_BIT(KC_LEFT_ALT) | MOD_BIT(KC_RIGHT_ALT)))
+// GUI is Super key
+#define guiActive() \
+  (keyboard_report->mods & (MOD_BIT(KC_LEFT_GUI) | MOD_BIT(KC_RIGHT_GUI)))
 
 #define ACTION_TAP_HOLD_SHIFT(kc_tap, kc_tap_shift, kc_hold, kc_hold_shift) \
   { kc_tap, kc_tap_shift, kc_hold, kc_hold_shift, 0, false }
@@ -35,7 +56,7 @@ extern tap_hold_action_t tap_hold_actions[];
 // MY_TAP_HOLD_KEYCODE and MY_TAP_HOLD_KEYCODE_MAX
 // are the custom kecodes used to catch keycode for processing
 // tap-hold action
-// they are defined in planck_keycodes in ./keymap.c
+// they are defined in keyglove_keycodes in ./keymap.c
 extern uint16_t MY_TAP_HOLD_KEYCODE;
 // allow only limited (e.g., 100) such keycodes
 // this is only relevant if there will be other
@@ -114,17 +135,19 @@ void tap(uint16_t keycode, bool register_kc, bool unregister_kc) {
   }
 }
 
-void selectAndSendKey(tap_hold_action_t *t, bool pressed, bool register_kc, bool unregister_code) {
+void selectAndSendKey(tap_hold_action_t *t, bool key_hold, bool register_kc, bool unregister_code) {
   if (shiftActive()) {
-    tap(pressed ? t->KC_hold_shift : t->KC_tap_shift, register_kc, unregister_code);
+    tap(key_hold ? t->KC_hold_shift : t->KC_tap_shift, register_kc, unregister_code);
   } else {
-    tap(pressed ? t->KC_hold : t->KC_tap, register_kc, unregister_code);
+    tap(key_hold ? t->KC_hold : t->KC_tap, register_kc, unregister_code);
   }
   t->timer_active = false;
 }
 
 void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
+
   if (MY_TAP_HOLD_KEYCODE <= keycode && keycode <= MY_TAP_HOLD_KEYCODE_MAX) {
+    //uprintf(">>>>> inside process_record_tap_hold %s\n", "<<<<<<<");
     uint16_t idx = keycode - MY_TAP_HOLD_KEYCODE;
     if ((int16_t)idx > highest_th) {
       highest_th = idx;
@@ -132,9 +155,20 @@ void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
     tap_hold_action_t *t = &tap_hold_actions[idx];
     if (record->event.pressed) {
       prev_mods = get_mods();
+      print("\n");
+      //uprintf(">>>>>> press shift mods: %d\n", get_mods() & MOD_MASK_SHIFT);
+      //uprintf(">>>>>> press ctrl mods: %d\n", get_mods() & MOD_MASK_CTRL);
+      //uprintf(">>>>>> press alt mods: %d\n", get_mods() & MOD_MASK_ALT);
+      //uprintf(">>>>>> press qui mods: %d\n", get_mods() & MOD_MASK_GUI);
+
       t->timer = timer_read();
       t->timer_active = true;
     } else {
+      //uprintf(">>>>>> release shift mods: %d\n", get_mods() & MOD_MASK_SHIFT);
+      //uprintf(">>>>>> release ctrl mods: %d\n", get_mods() & MOD_MASK_CTRL);
+      //uprintf(">>>>>> release alt mods: %d\n", get_mods() & MOD_MASK_ALT);
+      //uprintf(">>>>>> release gui mods: %d\n", get_mods() & MOD_MASK_GUI);
+
       if (timer_elapsed(t->timer) < TAP_HOLD_DELAY) {
         selectAndSendKey(t, false, true, true);
       } else {
