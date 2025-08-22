@@ -25,21 +25,25 @@
 //#include "action_tapping.h"
 //#include "keycode.h"
 
-// Define the TAP_HOLD_DELAY before including 'process_tap_hold.h'
-// otherwise it will default to 200 ms when used there
-// "process_tap_hold.h" is a copy-paste code.
-// Hence, it is awkward. But it works well.
-// It is used to process tap-hold for key codes.
-// The solution is not perfect yet for my purposes:
-// - remap the hold keycode in Xorg Xmodmap to Hyper
-//   + time must pass to consider it as hold, but using it
-//     as Hyper-somekey will not register Hyper if you do it
-//     fast enough. Maybe you need:
-//       - register keycode that is translated to Hype first
-//       - remove it if the event ends up being 'tap'
-//         and keep it if it is 'hold'
-#define TAP_HOLD_DELAY 170
-#include "process_tap_hold.h"
+/**
+ TODO: this is outdated
+ - consider removing, along with process_tap_hold.h file
+ Define the TAP_HOLD_DELAY before including 'process_tap_hold.h'
+ otherwise it will default to 200 ms when used there
+ "process_tap_hold.h" is a copy-paste code.
+ Hence, it is awkward. But it works well.
+ It is used to process tap-hold for key codes.
+ The solution is not perfect yet for my purposes:
+ - remap the hold keycode in Xorg Xmodmap to Hyper
+   + time must pass to consider it as hold, but using it
+     as Hyper-somekey will not register Hyper if you do it
+     fast enough. Maybe you need:
+       - register keycode that is translated to Hype first
+       - remove it if the event ends up being 'tap'
+         and keep it if it is 'hold'
+*/
+//#define TAP_HOLD_DELAY 170
+//#include "process_tap_hold.h"
 
 #define MODS_CTRL_MASK  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
 #define _______ KC_TRNS
@@ -60,14 +64,13 @@ enum layers {
     ,MOUSE
 };
 
-enum planck_keycodes {
+enum keyglove_keycodes {
    QWERTY = SAFE_RANGE
   ,BEAKL
   ,MY_COMM
   ,MY_MINS
   ,MY_DOT
   ,MY_QUOT
-  ,TH_TBHP
   ,HOMELPN
   ,HOMERPN
   ,HOMEDLR
@@ -80,11 +83,16 @@ enum planck_keycodes {
   // to whatever we add here, hence,
   // _MY_CATCH_TAP_HOLD_KEYCODES has a keycode value now:
   // it is used in 'process_tap_hold.h'
-  ,_MY_CATCH_TAP_HOLD_KEYCODES // Has to be the last element
+  //  ,_MY_CATCH_TAP_HOLD_KEYCODES // Has to be the last element
 };
 
+/**
+
+TODO: this is outdated consider removing
+      along with process_tap_hold.h
+
 // _MY_CATCH_TAP_HOLD_KEYCODES is a custom keycode
-// (i.e., defined in planck_keycodes)
+// (i.e., defined in keyglove_keycodes)
 // it is used to process tap-hold events
 uint16_t MY_TAP_HOLD_KEYCODE = _MY_CATCH_TAP_HOLD_KEYCODES;
 // TH(n) marks custom keycodes that you wish to process
@@ -104,6 +112,7 @@ tap_hold_action_t tap_hold_actions[] = {
   [1] = ACTION_TAP_HOLD(KC_A, KC_1),
   [2] = ACTION_TAP_HOLD(KC_B, KC_2)
 };
+*/
 
 // Mouse Declarations.
 #define MS_LEFT KC_MS_LEFT
@@ -132,6 +141,19 @@ tap_hold_action_t tap_hold_actions[] = {
 #define L_NUM_Y LT(NUMER, KC_Y)
 #define L_NUM_W LT(NUMER, KC_W)
 
+// - define keycodes for custom tap-or-hold
+//   interpretation in process_record_user
+//   function.
+// - see https://docs.qmk.fm/mod_tap
+// 1. tap-or-hold for KC_TAB, KC_HELP
+//   - KC_HELP is interpreted as HYPER
+//     in Xorg in Xmodmap file
+//   - LT(0, kc) has no practical use
+//     because layer 0 is always active
+//     + it is used purely to catch
+//       tap-or-hold action
+#define TH_TBHP LT(0, KC_TAB)
+
 //#define L_FLRTB LT(FLAYER, KC_TAB)
 // KC_MENU is interpreted in Xorg (and Emacs) as <SunProps>
 #define L_FLRME LT(FLAYER, KC_MENU)
@@ -143,6 +165,9 @@ tap_hold_action_t tap_hold_actions[] = {
 #define T_MOUSE TT(MOUSE)
 
 // Modifier Switching.
+// TODO: why opposite hand for key modifiers?
+// example MT(MOD_RCTL, KC_A)
+// KC_A is on the left side?
 #define  MSFT_E MT(MOD_LSFT, KC_E)
 #define  MSFT_R  MT(MOD_LSFT, KC_R)  // LSFT for keys implementing custom shift values.
 #define  MSFT_EN  MT(MOD_LSFT, KC_ENT)  // LSFT for keys implementing custom shift values.
@@ -210,10 +235,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_Q   , KC_H   , KC_O   , KC_U   , KC_X   ,                   KC_G   , KC_D   , KC_N   , KC_M   , KC_V   ,
   KC_Y   , MALT_I , MSFT_E , MCTL_A , MY_DOT ,                   KC_C   , MCTL_S , MSFT_R , MALT_T , KC_W,
   KC_J   , KC_SLSH, MY_QUOT, MY_MINS, KC_Z   ,                   KC_B   , KC_P   , KC_L   , KC_F   , KC_K   ,
-                    MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH(0)
-                  /*  MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, TH_TBHP */
-                   /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, KC_TAB */
-                  /* MGUI_BS, L_SYMSP, L_NAVES,                      L_FLRME, L_NUMEN, MY_ALTF */
+                    MGUI_BS, L_SYMSP, L_NAVES,                   L_FLRME, L_NUMEN, TH_TBHP
+                   /* MGUI_BS, L_SYMSP, L_NAVES,                     L_FLRME, L_NUMEN, KC_TAB  */
+                   /* MGUI_BS, L_SYMSP, L_NAVES,                     L_FLRME, L_NUMEN, MY_ALTF */
 ),
 
 /* _QWERTY
@@ -365,9 +389,14 @@ const uint16_t PROGMEM fn_actions[] = {
 // https://docs.qmk.fm/tap_hold#hold-on-other-key-press
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case TH(0):
+  // require KEYCODE_STRING_ENABLE = yes in rules.mk
+  //uprintf("]]]]]]]] get_hold_on_othre_key press for key: %s\n", get_keycode_string(keycode));
+  switch (keycode) {
+    // #define TH_TBHP LT(0, KC_TAB)
+    // custom KC_TAB for tap and KC_HELP for hold
+    case TH_TBHP: // LT(0, KC_TAB)
             // Immediately select the hold action when another key is pressed.
+           //uprintf(">>>>>> get_hold_on_othre_key press for key: %s\n", get_keycode_string(keycode));
             return true;
         default:
             // Do not select the hold action when another key is pressed.
@@ -375,16 +404,18 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-bool has_layer_changed = true;
 
+/*
 void matrix_scan_user(void) {
+  // you will need to define matrix_scan_tap_hold()
+  // before using it
   matrix_scan_tap_hold(); // Place this function call here
 }
+*/
 
 #define SHIFT_MODS  (MOD_BIT(KC_LSFT)|MOD_BIT(KC_RSFT))
 static uint8_t shift_on;  // shift is pressed
-
-static uint16_t ram_timer_user;
+static bool registered_kc_help = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t ram_alt_flayer_timer;
@@ -405,30 +436,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false; // skip all further processing of this key
       break;
 
-      // process
-      // - tap for KC_TAB
-      // - hold for KC_HELP (further reintrepreted by Xorg as Hyper key)
+      /**
+         process
+         - tap for KC_TAB
+         - hold for KC_HELP (further reintrepreted by Xorg as HYPER key)
+         see https://docs.qmk.fm/mod_tap e
+      */
   case TH_TBHP:
-    if (record->event.pressed) {
-      ram_timer_user = timer_read();
-      ram_timer_user = true;
-      // register KC_HELP for 'hold' (it is used as HYPER mod key)
+    if (!record->tap.count && record->event.pressed) {
+      // intercept hold function to send KC_HELP
+      // (it is used as HYPER mod key in Xorg)
       // this will make all keybindings using HYPER fuctional
       // from the moment of the key press.
       //register_code(KC_TAB);
+      register_code16(KC_HELP);
+      registered_kc_help = true;
+      // return false to stop any furher processing by QMK
+      return false;
+    } else if (record->event.pressed) {
+      tap_code16(KC_TAB);
     } else {
-      if (timer_elapsed(ram_timer_user) < TAP_HOLD_DELAY) {
-        // this is a 'tap', not a 'hold',
-        // hence, unregister KC_HELP (for 'hold')
-        // register KC_TAB for 'tap'
-        //unregister_code(KC_HELP);
-        tap_code(KC_TAB);
-      } else {
-        tap_code(KC_HELP);
+      if (registered_kc_help) {
+        unregister_code16(KC_HELP);
       }
     }
-    return false; // skip all further processing of this key
-    break;
+    // return false to stop any furher processing by QMK
+    return false;
+    // return true for normal procssing of tap keycode
+    //return true;
 
   case MY_QUOT:
       if (record->event.pressed) {
@@ -551,6 +586,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     break;
 
   }
-  process_record_tap_hold(keycode, record); // Place this function at the end
+  //process_record_tap_hold(keycode, record); // Place this function at the end
   return true;  // let QMK send press/release events for the key
 }
