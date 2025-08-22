@@ -43,4 +43,7 @@ the Free Software Foundation, either version 2 of the License, or
 /* https://github.com/qmk/qmk_firmware/blob/master/docs/tap_hold.md#retro-tapping */
 /* #define RETRO_TAPPING */
 
+// debugging only: output the frequency of switch matrix scan
+//#define DEBUG_MATRIX_SCAN_RATE
+// currently about 1100 scans per second?
 #endif

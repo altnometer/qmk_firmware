@@ -59,18 +59,23 @@ BOOTLOADER = caterina
 # OPT_DEFS += -DBOOTLOADER_SIZE=4096
 
 
+# debugging opptions:
+# enables keycode names printing with
+# uprintf("kc: %s\n", get_keycode_string(keycode));
+KEYCODE_STRING_ENABLE = yes
+
 # Build Options
 #   change yes to no to disable
 #
 #BOOTMAGIC_ENABLE = no      # Virtual DIP switch configuration(+1000)
 #MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
 #EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
-#CONSOLE_ENABLE = no        # Console for debug(adds 2KB to bootsize)
-# firmware size for no option: (73%, 7562 bytes free)
-CONSOLE_ENABLE = yes        # Console for debug (adds 2KB to bootsize)
-# firmware size for yes option: (66%, 9476 bytes free)
-# read firmware output with:
 # qmk console
+CONSOLE_ENABLE = no        # Console for debug(adds 2KB to bootsize)
+# firmware size for no option: (66%, 9476 bytes free)
+#CONSOLE_ENABLE = yes        # Console for debug (adds 2KB to bootsize)
+# firmware size for yes option: (73%, 7562 bytes free)
+# read firmware output with:
 # Do not enable SLEEP_LED_ENABLE. it uses the same timer as BACKLIGHT_ENABLE
 SLEEP_LED_ENABLE = no       # Breathing sleep LED during USB suspend
 # if this doesn't work, see here: https://github.com/tmk/tmk_keyboard/wiki/FAQ#nkro-doesnt-work
