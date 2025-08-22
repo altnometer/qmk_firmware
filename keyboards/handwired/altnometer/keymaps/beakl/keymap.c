@@ -353,7 +353,6 @@ enum function_id {
     SHIFT_ESC,
 };
 
-
 void action_function(keyrecord_t *record, uint8_t id, uint8_t opt) {
   static uint8_t shift_esc_shift_mask;
   switch (id) {
@@ -421,7 +420,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   static uint16_t ram_alt_flayer_timer;
 
   switch (keycode) {
-
   case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);

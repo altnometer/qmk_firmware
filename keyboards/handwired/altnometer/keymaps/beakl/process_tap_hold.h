@@ -155,7 +155,7 @@ void process_record_tap_hold(uint16_t keycode, keyrecord_t *record) {
     tap_hold_action_t *t = &tap_hold_actions[idx];
     if (record->event.pressed) {
       prev_mods = get_mods();
-      print("\n");
+      //print("\n");
       //uprintf(">>>>>> press shift mods: %d\n", get_mods() & MOD_MASK_SHIFT);
       //uprintf(">>>>>> press ctrl mods: %d\n", get_mods() & MOD_MASK_CTRL);
       //uprintf(">>>>>> press alt mods: %d\n", get_mods() & MOD_MASK_ALT);

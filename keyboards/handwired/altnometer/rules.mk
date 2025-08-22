@@ -71,7 +71,7 @@ KEYCODE_STRING_ENABLE = yes
 #MOUSEKEY_ENABLE = no       # Mouse keys(+4700)
 #EXTRAKEY_ENABLE = no       # Audio control and System control(+450)
 # qmk console
-CONSOLE_ENABLE = no        # Console for debug(adds 2KB to bootsize)
+#CONSOLE_ENABLE = no        # Console for debug(adds 2KB to bootsize)
 # firmware size for no option: (66%, 9476 bytes free)
 #CONSOLE_ENABLE = yes        # Console for debug (adds 2KB to bootsize)
 # firmware size for yes option: (73%, 7562 bytes free)
